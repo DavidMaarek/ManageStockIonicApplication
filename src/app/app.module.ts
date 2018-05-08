@@ -17,6 +17,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { IonicStorageModule } from '@ionic/storage';
 import { ProfilePage } from "../pages/profile/profile";
 import { SignupPage } from "../pages/signup/signup";
+import { ProfileProvider } from '../providers/profile/profile';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { SignupPage } from "../pages/signup/signup";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GlobalProvider,
-    AuthProvider
+    AuthProvider,
+    ProfileProvider
   ]
 })
 export class AppModule {}

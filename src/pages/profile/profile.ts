@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { AlertController, IonicPage, NavController } from 'ionic-angular';
+import { AlertController, IonicPage, LoadingController, NavController } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { LoginPage } from "../login/login";
+import { ProfileProvider } from "../../providers/profile/profile";
 
 /**
  * Generated class for the ProfilePage page.
@@ -17,14 +18,19 @@ import { LoginPage } from "../login/login";
 })
 export class ProfilePage {
 
+  profil;
+
   constructor(
     public alertCtrl: AlertController,
     public storage: Storage,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public profileService: ProfileProvider,
+    public loadingCtrl: LoadingController
   ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilPage');
+    this.initializeProfil();
   }
 
   logout() {
@@ -55,6 +61,20 @@ export class ProfilePage {
       console.log('clear');
       this.navCtrl.setRoot(LoginPage);
     })
+  }
+
+  initializeProfil(){
+    let loading = this.loadingCtrl.create({
+      content: ''
+    });
+    loading.present();
+
+    this.profileService.getProfil().then((result) => {
+      this.profil = result;
+      console.log(result);
+      console.log(this.profil.user.id);
+      loading.dismiss();
+    });
   }
 
 }
