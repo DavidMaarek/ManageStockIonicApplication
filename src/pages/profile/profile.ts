@@ -3,6 +3,7 @@ import { AlertController, IonicPage, LoadingController, NavController } from 'io
 import { Storage } from "@ionic/storage";
 import { LoginPage } from "../login/login";
 import { ProfileProvider } from "../../providers/profile/profile";
+import { CreateStockPage } from "../create-stock/create-stock";
 
 /**
  * Generated class for the ProfilePage page.
@@ -71,9 +72,13 @@ export class ProfilePage {
 
     this.profileService.getProfil().then((result) => {
       this.profil = result;
-      console.log(result);
-      console.log(this.profil.user.id);
       loading.dismiss();
+    });
+  }
+
+  goToCreateStockPage(){
+    this.navCtrl.push(CreateStockPage, {
+      user: this.profil.user
     });
   }
 

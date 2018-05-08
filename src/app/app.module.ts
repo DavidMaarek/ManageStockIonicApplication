@@ -18,6 +18,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import { ProfilePage } from "../pages/profile/profile";
 import { SignupPage } from "../pages/signup/signup";
 import { ProfileProvider } from '../providers/profile/profile';
+import { CreateStockPage } from "../pages/create-stock/create-stock";
+import { StockProvider } from '../providers/stock/stock';
 
 @NgModule({
   declarations: [
@@ -27,13 +29,14 @@ import { ProfileProvider } from '../providers/profile/profile';
     TabsPage,
     LoginPage,
     ProfilePage,
-    SignupPage
+    SignupPage,
+    CreateStockPage,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,7 +46,8 @@ import { ProfileProvider } from '../providers/profile/profile';
     TabsPage,
     LoginPage,
     ProfilePage,
-    SignupPage
+    SignupPage,
+    CreateStockPage,
   ],
   providers: [
     StatusBar,
@@ -51,7 +55,8 @@ import { ProfileProvider } from '../providers/profile/profile';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GlobalProvider,
     AuthProvider,
-    ProfileProvider
+    ProfileProvider,
+    StockProvider,
   ]
 })
 export class AppModule {}

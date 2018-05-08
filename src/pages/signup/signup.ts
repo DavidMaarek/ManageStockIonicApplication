@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { AuthProvider } from "../../providers/auth/auth";
 import { HomePage } from "../home/home";
-import { TabsPage } from "../tabs/tabs";
 import { Storage } from "@ionic/storage";
 
 /**
