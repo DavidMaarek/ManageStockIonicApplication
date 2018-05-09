@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { StockProvider } from "../../providers/stock/stock";
-import { ProfilePage } from "../profile/profile";
+import { ViewStockPage } from "../view-stock/view-stock";
 
 /**
  * Generated class for the CreateStockPage page.
@@ -18,7 +18,7 @@ import { ProfilePage } from "../profile/profile";
 export class CreateStockPage {
 
   stockData = {
-    name: 'name',
+    name: '',
     stockAccesses: [
       {
         role: 0, // À la création du stock le créateur est forcement au plus au niveau d'access => 0
@@ -42,7 +42,6 @@ export class CreateStockPage {
     this.user = this.navParams.get('user');
     // On assigne le user au stockAccesses
     this.stockData.stockAccesses[0].user = this.user.id;
-    console.log(this.user);
   }
 
   ionViewDidLoad() {
@@ -59,7 +58,10 @@ export class CreateStockPage {
     this.stockService.createStock(this.stockData).then((result) =>{
       this.data = result;
       loading.dismiss();
-      this.navCtrl.setRoot(ProfilePage);
+      console.log(this.data);
+      this.navCtrl.push(ViewStockPage, {
+        stockId: this.data.id
+      });
     }, (error) => {
       console.log(error);
       let toast = this.toastCtrl.create({

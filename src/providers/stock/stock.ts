@@ -30,13 +30,30 @@ export class StockProvider {
           })
         };
 
-        console.log(httpOptions);
-        console.log(token);
-
         this.http.post(this.global.getApiUrl()+'stocks', stockData, httpOptions)
           .subscribe(data => {
-            console.log(data);
             resolve(data);
+          }, error => {
+            reject(error.error);
+          });
+      });
+    });
+  }
+
+  getProfileStock(stockId){
+    return this.storage.get('token').then((token) => {
+      return new Promise((resolve, reject) => {
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'X-Auth-Token': token.property
+          })
+        };
+
+        this.http.get(this.global.getApiUrl()+'stocks/'+stockId, httpOptions)
+          .subscribe(data => {
+            resolve(data);
+            console.log(data);
           }, error => {
             reject(error.error);
           });

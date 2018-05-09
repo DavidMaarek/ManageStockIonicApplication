@@ -4,6 +4,7 @@ import { Storage } from "@ionic/storage";
 import { LoginPage } from "../login/login";
 import { ProfileProvider } from "../../providers/profile/profile";
 import { CreateStockPage } from "../create-stock/create-stock";
+import { ViewStockPage } from "../view-stock/view-stock";
 
 /**
  * Generated class for the ProfilePage page.
@@ -20,6 +21,8 @@ import { CreateStockPage } from "../create-stock/create-stock";
 export class ProfilePage {
 
   profil;
+
+  stockId;
 
   constructor(
     public alertCtrl: AlertController,
@@ -79,6 +82,12 @@ export class ProfilePage {
   goToCreateStockPage(){
     this.navCtrl.push(CreateStockPage, {
       user: this.profil.user
+    });
+  }
+
+  goToViewStock(stockId){
+    this.navCtrl.push(ViewStockPage, {
+      stockId: stockId
     });
   }
 

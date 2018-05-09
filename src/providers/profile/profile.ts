@@ -30,9 +30,6 @@ export class ProfileProvider {
           })
         };
 
-        console.log(httpOptions);
-        console.log(token);
-
         this.http.get(this.global.getApiUrl()+'profile', httpOptions)
           .subscribe(data => {
             resolve(data);

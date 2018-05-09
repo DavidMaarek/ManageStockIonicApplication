@@ -47,7 +47,6 @@ export class LoginPage {
 
     this.auth.login(this.loginData).then((result) =>{
       this.data = result;
-      console.log(this.data.value);
       this.storage.set('token', {property: this.data.value})
       .then(
         () => {

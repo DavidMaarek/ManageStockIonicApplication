@@ -20,6 +20,7 @@ import { SignupPage } from "../pages/signup/signup";
 import { ProfileProvider } from '../providers/profile/profile';
 import { CreateStockPage } from "../pages/create-stock/create-stock";
 import { StockProvider } from '../providers/stock/stock';
+import { ViewStockPage } from "../pages/view-stock/view-stock";
 
 @NgModule({
   declarations: [
@@ -31,11 +32,14 @@ import { StockProvider } from '../providers/stock/stock';
     ProfilePage,
     SignupPage,
     CreateStockPage,
+    ViewStockPage,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      backButtonText: 'Retour'
+    }),
     IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
@@ -48,6 +52,7 @@ import { StockProvider } from '../providers/stock/stock';
     ProfilePage,
     SignupPage,
     CreateStockPage,
+    ViewStockPage,
   ],
   providers: [
     StatusBar,

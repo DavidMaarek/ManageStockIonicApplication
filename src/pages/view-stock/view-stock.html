@@ -1,0 +1,70 @@
+<!--
+  Generated template for the ViewStockPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>view-stock</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h1>{{ stock?.name }}</h1>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-8>
+        <h3>Utilisateurs</h3>
+      </ion-col>
+      <ion-col>
+        <a (click)="goToAddUserStock()">Ajouter un utilisateur</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <button ion-item *ngFor="let access of stock?.stockAccesses" (click)="itemSelected(item)">
+      {{ access.user.firstname }} {{ access.user.name }}
+    </button>
+  </ion-list>
+
+
+
+  <p>Liste des droits :</p>
+  <ul>
+    <li>
+      Super Administrateur :
+      <ul>
+        <li>Créer un nouveau produit</li>
+        <li>Modifier un produit</li>
+        <li>Supprimer un produit</li>
+        <li>Modifier le stock (nom et utilisateurs)</li>
+        <li>Réapprovisionner un produit</li>
+        <li>Retirer un produit</li>
+      </ul>
+    </li>
+
+    <li>
+      Administrateur :
+      <ul>
+
+        <li>Créer un nouveau produit</li>
+        <li>Modifier un produit</li>
+        <li>Réapprovisionner un produit</li>
+        <li>Retirer un produit</li>
+      </ul>
+    </li>
+
+    <li>
+      Utilisateur :
+      <ul>
+        <li>Réapprovisionner un produit</li>
+        <li>Retirer un produit</li>
+      </ul>
+    </li>
+  </ul>
+</ion-content>

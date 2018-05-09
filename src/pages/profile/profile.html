@@ -37,7 +37,7 @@
     </ion-row>
   </ion-grid>
   <ion-list>
-    <button ion-item *ngFor="let stock of profil?.stocks" (click)="itemSelected(item)">
+    <button ion-item *ngFor="let stock of profil?.stocks" (click)="goToViewStock(stock.id)">
       {{ stock.id }}<br>
       {{ stock.name }}
     </button>
