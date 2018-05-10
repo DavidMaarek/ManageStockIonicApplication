@@ -60,7 +60,7 @@ export class CreateStockPage {
       loading.dismiss();
       console.log(this.data);
       this.navCtrl.push(ViewStockPage, {
-        stockId: this.data.id
+        stockId: this.data
       });
     }, (error) => {
       console.log(error);

@@ -14,21 +14,30 @@
 
 
 <ion-content padding>
+
+  <!--<ion-refresher (ionRefresh)="initializeProfil()">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>-->
+
   <h1>{{ stock?.name }}</h1>
 
   <ion-grid>
     <ion-row>
-      <ion-col col-8>
+      <ion-col col-6>
         <h3>Utilisateurs</h3>
       </ion-col>
-      <ion-col>
+      <ion-col col-6 text-right>
         <a (click)="goToAddUserStock()">Ajouter un utilisateur</a>
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-list>
-    <button ion-item *ngFor="let access of stock?.stockAccesses" (click)="itemSelected(item)">
-      {{ access.user.firstname }} {{ access.user.name }}
+    <button ion-item *ngFor="let access of stock?.stockAccesses" (click)="goToUserStock(access)">
+      {{ access.user.firstname }} {{ access.user.name }} <br>
+      <span *ngIf="access.role == 0">Super Admin</span>
+      <span *ngIf="access.role == 1">Admin</span>
+      <span *ngIf="access.role == 2">Utilisateur</span>
     </button>
   </ion-list>
 

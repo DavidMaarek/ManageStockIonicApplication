@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
 import { StockProvider } from "../../providers/stock/stock";
+import { ViewUserStockPage } from "../view-user-stock/view-user-stock";
 
 /**
  * Generated class for the ViewStockPage page.
@@ -51,5 +52,11 @@ export class ViewStockPage {
 
   goToAddUserStock(){
 
+  }
+
+  goToUserStock(access){
+    this.navCtrl.push(ViewUserStockPage, {
+      access: access
+    });
   }
 }
