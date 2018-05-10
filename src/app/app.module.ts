@@ -22,6 +22,7 @@ import { CreateStockPage } from "../pages/create-stock/create-stock";
 import { StockProvider } from '../providers/stock/stock';
 import { ViewStockPage } from "../pages/view-stock/view-stock";
 import { ViewUserStockPage } from "../pages/view-user-stock/view-user-stock";
+import { PatchUserStockPage } from "../pages/patch-user-stock/patch-user-stock";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ViewUserStockPage } from "../pages/view-user-stock/view-user-stock";
     SignupPage,
     CreateStockPage,
     ViewStockPage,
-    ViewUserStockPage
+    ViewUserStockPage,
+    PatchUserStockPage,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { ViewUserStockPage } from "../pages/view-user-stock/view-user-stock";
     SignupPage,
     CreateStockPage,
     ViewStockPage,
-    ViewUserStockPage
+    ViewUserStockPage,
+    PatchUserStockPage,
   ],
   providers: [
     StatusBar,

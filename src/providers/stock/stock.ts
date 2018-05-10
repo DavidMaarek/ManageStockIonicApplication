@@ -60,4 +60,26 @@ export class StockProvider {
       });
     });
   }
+
+  patchUserStock(accessId, newRole){
+    return this.storage.get('token').then((token) => {
+      return new Promise((resolve, reject) => {
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'X-Auth-Token': token.property
+          })
+        };
+
+        this.http.patch(this.global.getApiUrl()+'accesses/'+accessId, newRole, httpOptions)
+          .subscribe(data => {
+            resolve(data);
+          }, error => {
+            reject(error.error);
+          });
+      });
+    });
+  }
+
+
 }

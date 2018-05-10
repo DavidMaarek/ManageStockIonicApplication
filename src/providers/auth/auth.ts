@@ -58,7 +58,6 @@ export class AuthProvider {
 
         this.http.get(this.global.getApiUrl()+'valid-auth-tokens', httpOptions)
           .subscribe(data => {
-            console.log(data);
             resolve(data);
           }, error => {
             reject(error.error);

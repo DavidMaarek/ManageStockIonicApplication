@@ -28,8 +28,6 @@ export class MyApp {
       splashScreen.hide();
 
       this.auth.isTokenValid().then((result) => {
-        console.log('Result');
-        console.log(result);
       }, error => {
         if(error.code == 401){
           console.log(error);

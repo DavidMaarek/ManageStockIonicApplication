@@ -43,7 +43,6 @@ export class ViewStockPage {
     this.stockService.getProfileStock(this.stockId).then((result) =>{
       this.stock = result;
       loading.dismiss();
-      console.log(this.stock);
     }, (error) => {
       console.log(error);
       loading.dismiss();
@@ -56,7 +55,8 @@ export class ViewStockPage {
 
   goToUserStock(access){
     this.navCtrl.push(ViewUserStockPage, {
-      access: access
+      access: access,
+      stockId: this.stockId
     });
   }
 }
