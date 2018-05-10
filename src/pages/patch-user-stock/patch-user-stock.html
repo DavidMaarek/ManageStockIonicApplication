@@ -14,9 +14,9 @@
 
 
 <ion-content padding>
-  <h1>Modifications des droits de {{ access?.user.firstname }} {{ access.user.name }}</h1>
+  <h1>Modifications des droits de {{ access?.user.firstname }} {{ access?.user.name }}</h1>
 
-  <form action="">
+  <form>
     <ion-item>
       <ion-label>Droits :</ion-label>
       <ion-select [(ngModel)]="formAccess.role" name="role">
