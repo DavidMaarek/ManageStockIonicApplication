@@ -19,11 +19,11 @@ import { Storage } from "@ionic/storage";
 export class SignupPage {
 
   signupData = {
-    name: '',
-    firstname: '',
-    email: '',
-    plainPassword: '',
-    society: ''
+    name: null,
+    firstname: null,
+    email: null,
+    plainPassword: null,
+    society: null,
   };
 
   data: any;

@@ -40,6 +40,13 @@
       <ion-input [(ngModel)]="signupData.society" name="society" type="text" placeholder="Société"></ion-input>
     </ion-item>
 
-    <button ion-button type="submit" (click)="doSignup()">Inscription</button>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button round type="submit" [disabled]="signupData.name == null || signupData.firstname == null || signupData.email == null || signupData.plainPassword == null" (click)="doSignup()">Inscription</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
   </form>
 </ion-content>

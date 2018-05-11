@@ -15,7 +15,6 @@
 
 <ion-content padding>
   <form>
-
     <ion-item>
       <ion-label>Utilisateur :</ion-label>
       <ion-select [(ngModel)]="data.user" name="user">
@@ -40,4 +39,38 @@
       </ion-row>
     </ion-grid>
   </form>
+
+  <p>Liste des droits :</p>
+  <ul>
+    <li>
+      Super Administrateur :
+      <ul>
+        <li>Créer un nouveau produit</li>
+        <li>Modifier un produit</li>
+        <li>Supprimer un produit</li>
+        <li>Modifier le stock (nom et utilisateurs)</li>
+        <li>Réapprovisionner un produit</li>
+        <li>Retirer un produit</li>
+      </ul>
+    </li>
+
+    <li>
+      Administrateur :
+      <ul>
+
+        <li>Créer un nouveau produit</li>
+        <li>Modifier un produit</li>
+        <li>Réapprovisionner un produit</li>
+        <li>Retirer un produit</li>
+      </ul>
+    </li>
+
+    <li>
+      Utilisateur :
+      <ul>
+        <li>Réapprovisionner un produit</li>
+        <li>Retirer un produit</li>
+      </ul>
+    </li>
+  </ul>
 </ion-content>

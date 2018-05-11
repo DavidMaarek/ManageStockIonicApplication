@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>view-stock</ion-title>
+    <ion-title>{{ stock?.name }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,7 +20,7 @@
     </ion-refresher-content>
   </ion-refresher>-->
 
-  <h1>{{ stock?.name }}</h1>
+  <h1 text-center>{{ stock?.name }}</h1>
 
   <ion-grid>
     <ion-row>
@@ -40,40 +40,4 @@
       <span *ngIf="access.role == 2">Utilisateur</span>
     </button>
   </ion-list>
-
-
-
-  <p>Liste des droits :</p>
-  <ul>
-    <li>
-      Super Administrateur :
-      <ul>
-        <li>Créer un nouveau produit</li>
-        <li>Modifier un produit</li>
-        <li>Supprimer un produit</li>
-        <li>Modifier le stock (nom et utilisateurs)</li>
-        <li>Réapprovisionner un produit</li>
-        <li>Retirer un produit</li>
-      </ul>
-    </li>
-
-    <li>
-      Administrateur :
-      <ul>
-
-        <li>Créer un nouveau produit</li>
-        <li>Modifier un produit</li>
-        <li>Réapprovisionner un produit</li>
-        <li>Retirer un produit</li>
-      </ul>
-    </li>
-
-    <li>
-      Utilisateur :
-      <ul>
-        <li>Réapprovisionner un produit</li>
-        <li>Retirer un produit</li>
-      </ul>
-    </li>
-  </ul>
 </ion-content>

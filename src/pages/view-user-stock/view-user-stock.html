@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>view-user-stock</ion-title>
+    <ion-title>{{ access?.user.firstname }} {{ access?.user.name }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,7 +16,7 @@
 <ion-content padding>
 
   <p>
-    {{ access?.user.firstname }} {{ access.user.name }} <br>
+    {{ access?.user.firstname }} {{ access?.user.name }} <br>
     Droits :
     <span *ngIf="access?.role == 0">Super Admin</span>
     <span *ngIf="access?.role == 1">Admin</span>
