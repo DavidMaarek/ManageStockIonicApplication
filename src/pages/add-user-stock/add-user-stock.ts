@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { UserProvider } from "../../providers/user/user";
-import { ViewStockPage } from "../view-stock/view-stock";
 import { AccessProvider } from "../../providers/access/access";
 
 /**

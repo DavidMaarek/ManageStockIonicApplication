@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { PatchUserStockPage } from "../patch-user-stock/patch-user-stock";
 import { AccessProvider } from "../../providers/access/access";
-import { ViewStockPage } from "../view-stock/view-stock";
-import { LoginPage } from "../login/login";
 
 /**
  * Generated class for the ViewUserStockPage page.
