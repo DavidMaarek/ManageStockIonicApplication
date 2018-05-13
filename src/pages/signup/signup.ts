@@ -80,7 +80,7 @@ export class SignupPage {
       }, (error) => {
         let toast = this.toastCtrl.create({
           message: error.error.message,
-          duration: 10000,
+          duration: 3000,
           position: 'top'
         });
         loginLoading.dismiss();
@@ -91,7 +91,7 @@ export class SignupPage {
     }, (error) => {
       let toast = this.toastCtrl.create({
         message: error.error.message,
-        duration: 10000,
+        duration: 3000,
         position: 'top'
       });
       signupLoading.dismiss();

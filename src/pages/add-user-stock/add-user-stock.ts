@@ -65,12 +65,10 @@ export class AddUserStockPage {
     this.accessService.addAccess(this.data).then((result) =>{
       console.log(result);
       loading.dismiss();
-      this.navCtrl.setRoot(ViewStockPage, {
-        stockId: this.stockId
-      });
+      this.navCtrl.pop();
       let successToast = this.toastCtrl.create({
         message: 'Utilisateur ajouté avec succes',
-        duration: 10000,
+        duration: 3000,
         position: 'top'
       });
       successToast.present();
@@ -78,7 +76,7 @@ export class AddUserStockPage {
       console.log(error);
       let toast = this.toastCtrl.create({
         message: error.message,
-        duration: 10000,
+        duration: 3000,
         position: 'top'
       });
       loading.dismiss();

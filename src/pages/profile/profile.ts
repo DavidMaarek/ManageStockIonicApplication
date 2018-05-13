@@ -37,6 +37,10 @@ export class ProfilePage {
     this.initializeProfil();
   }
 
+   ionViewDidEnter(){
+     this.updateProfil();
+   }
+
   logout() {
     let alert = this.alertCtrl.create({
       title: 'Déconnexion',
@@ -76,6 +80,12 @@ export class ProfilePage {
     this.profileService.getProfil().then((result) => {
       this.profil = result;
       loading.dismiss();
+    });
+  }
+
+  updateProfil(){
+    this.profileService.getProfil().then((result) => {
+      this.profil = result;
     });
   }
 

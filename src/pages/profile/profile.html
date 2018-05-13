@@ -19,11 +19,10 @@
 
 <ion-content padding>
   <p>
-    {{ profil?.user.id }} <br>
-    {{ profil?.user.firstname }}<br>
-    {{ profil?.user.name }}<br>
-    {{ profil?.user.email }}<br>
-    {{ profil?.user.society }}
+    Prénom : {{ profil?.user.firstname }}<br>
+    Nom : {{ profil?.user.name }}<br>
+    Email : {{ profil?.user.email }}<br>
+    Société : {{ profil?.user.society }}
   </p>
 
   <ion-grid>
@@ -38,7 +37,6 @@
   </ion-grid>
   <ion-list>
     <button ion-item *ngFor="let stock of profil?.stocks" (click)="goToViewStock(stock.id)">
-      {{ stock.id }}<br>
       {{ stock.name }}
     </button>
   </ion-list>

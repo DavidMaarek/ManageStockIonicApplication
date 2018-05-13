@@ -101,5 +101,45 @@ export class StockProvider {
     });
   }
 
+  patchStock(stockId, patchStockData){
+    return this.storage.get('token').then((token) => {
+      return new Promise((resolve, reject) => {
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'X-Auth-Token': token.property
+          })
+        };
+
+        this.http.patch(this.global.getApiUrl()+'stocks/'+stockId, patchStockData, httpOptions)
+          .subscribe(data => {
+            resolve(data);
+          }, error => {
+            reject(error.error);
+          });
+      });
+    });
+  }
+
+  deleteStock(stockId){
+    return this.storage.get('token').then((token) => {
+      return new Promise((resolve, reject) => {
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'X-Auth-Token': token.property
+          })
+        };
+
+        this.http.delete(this.global.getApiUrl()+'stocks/'+stockId, httpOptions)
+          .subscribe(data => {
+            resolve(data);
+          }, error => {
+            reject(error.error);
+          });
+      });
+    });
+  }
+
 
 }

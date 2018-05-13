@@ -40,4 +40,18 @@
       <span *ngIf="access.role == 2">Utilisateur</span>
     </button>
   </ion-list>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 text-center="">
+        <button ion-button icon-start round (click)="goToPathStock()"><ion-icon name="brush"></ion-icon>Modifier le nom du stock</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 text-center="">
+        <button ion-button icon-start round color="danger" (click)="deleteStock()"><ion-icon name="trash"></ion-icon>Supprimer le stock</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

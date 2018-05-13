@@ -18,7 +18,7 @@ import { ViewStockPage } from "../view-stock/view-stock";
 export class CreateStockPage {
 
   stockData = {
-    name: '',
+    name: null,
     stockAccesses: [
       {
         role: 0, // À la création du stock le créateur est forcement au plus au niveau d'access => 0
@@ -61,12 +61,15 @@ export class CreateStockPage {
       console.log(this.data);
       this.navCtrl.push(ViewStockPage, {
         stockId: this.data
+      }).then(() => { // Afin de supprimer de l'historique la page, comme ca lorsque l'utilisateur revient en arriere il ne tombe par sur la page de création du stock
+        let index = 1;
+        this.navCtrl.remove(index);
       });
     }, (error) => {
       console.log(error);
       let toast = this.toastCtrl.create({
         message: error.error.message,
-        duration: 10000,
+        duration: 3000,
         position: 'top'
       });
       loading.dismiss();

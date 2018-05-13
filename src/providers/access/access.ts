@@ -20,7 +20,27 @@ export class AccessProvider {
     console.log('Hello AccessProvider Provider');
   }
 
-  addAccess(data){
+  getAccess(accessId){
+    return this.storage.get('token').then((token) => {
+      return new Promise((resolve, reject) => {
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'X-Auth-Token': token.property
+          })
+        };
+
+        this.http.get(this.global.getApiUrl()+'accesses/'+accessId, httpOptions)
+          .subscribe(data => {
+            resolve(data);
+          }, error => {
+            reject(error.error);
+          });
+      });
+    });
+  }
+
+  addAccess(data) {
     return this.storage.get('token').then((token) => {
       return new Promise((resolve, reject) => {
         const httpOptions = {
@@ -31,6 +51,26 @@ export class AccessProvider {
         };
 
         this.http.post(this.global.getApiUrl()+'accesses', data, httpOptions)
+          .subscribe(data => {
+            resolve(data);
+          }, error => {
+            reject(error.error);
+          });
+      });
+    });
+  }
+
+  deleteAccess(accessId) {
+    return this.storage.get('token').then((token) => {
+      return new Promise((resolve, reject) => {
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'X-Auth-Token': token.property
+          })
+        };
+
+      this.http.delete(this.global.getApiUrl()+'accesses/'+accessId, httpOptions)
           .subscribe(data => {
             resolve(data);
           }, error => {

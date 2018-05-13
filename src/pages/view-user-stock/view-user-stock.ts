@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController, IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { PatchUserStockPage } from "../patch-user-stock/patch-user-stock";
+import { AccessProvider } from "../../providers/access/access";
+import { ViewStockPage } from "../view-stock/view-stock";
+import { LoginPage } from "../login/login";
 
 /**
  * Generated class for the ViewUserStockPage page.
@@ -19,7 +22,13 @@ export class ViewUserStockPage {
   access;
   stockId;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public accessService: AccessProvider,
+    public alertCtrl: AlertController,
+    public toastCtrl: ToastController
+  ) {
     this.access = this.navParams.get('access');
     this.stockId = this.navParams.get('stockId');
   }
@@ -28,10 +37,62 @@ export class ViewUserStockPage {
     console.log('ionViewDidLoad ViewUserStockPage');
   }
 
-  goToPatchUserStock(access){
+  ionViewDidEnter(){
+    this.updateAccess();
+  }
+
+  goToPatchUserStock(access) {
     this.navCtrl.push(PatchUserStockPage, {
       access: access,
       stockId: this.stockId
+    });
+  }
+
+  updateAccess(){
+    this.accessService.getAccess(this.access.id).then((result) => {
+      this.access = result;
+    });
+  }
+
+  deleteUserStock() {
+    let alert = this.alertCtrl.create({
+      title: 'Suppression utilisateur',
+      message: 'Voullez-vous vraiment supprimer ' + this.access.user.firstname + ' ' + this.access.user.name + ' du stock ?',
+      buttons: [
+        {
+          text: 'Non',
+          role: 'cancel',
+        },
+        {
+          text: 'Oui',
+          handler: () => {
+            this.doDeleteUserStock()
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  doDeleteUserStock() {
+    this.accessService.deleteAccess(this.access.id).then((result) =>{
+      let successMessage = this.toastCtrl.create({
+        message: 'Suppression effectuée avec succes',
+        duration: 3000,
+        position: 'top'
+      });
+      successMessage.present();
+
+      this.navCtrl.pop();
+
+    }, (error) => {
+      console.log(error);
+      let toast = this.toastCtrl.create({
+        message: error.error.message,
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
     });
   }
 

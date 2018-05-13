@@ -20,6 +20,13 @@
       <ion-input [(ngModel)]="stockData.name" name="name" type="text" placeholder="Nom"></ion-input>
     </ion-item>
 
-    <button ion-button type="submit" (click)="doCreateStock()">Valider</button>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 text-center="">
+          <button ion-button round type="submit" [disabled]="stockData.name == null" (click)="doCreateStock()">Valider</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </form>
 </ion-content>

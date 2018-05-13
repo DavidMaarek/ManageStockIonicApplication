@@ -14,7 +14,6 @@
 
 
 <ion-content padding>
-
   <p>
     {{ access?.user.firstname }} {{ access?.user.name }} <br>
     Droits :
@@ -49,9 +48,14 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12 text-center="">
-        <button ion-button round (click)="goToPatchUserStock(access)">Modifier les droits</button>
+        <button ion-button icon-start round (click)="goToPatchUserStock(access)"><ion-icon name="brush"></ion-icon>Modifier les droits</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 text-center="">
+        <button ion-button icon-start round color="danger" (click)="deleteUserStock()"><ion-icon name="trash"></ion-icon>Supprimer l'utilisateur du stock</button>
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>
