@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Nav, NavController, NavParams, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -7,19 +7,21 @@ import { TabsPage } from "../pages/tabs/tabs";
 import { LoginPage } from "../pages/login/login";
 import { AuthProvider } from "../providers/auth/auth";
 import { GlobalProvider } from "../providers/global/global";
+import { HomePage } from "../pages/home/home";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  @ViewChild(Nav) nav: Nav;
+  rootPage:any = LoginPage;
 
   constructor(
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     public auth: AuthProvider,
-    public global: GlobalProvider
+    public global: GlobalProvider,
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -27,12 +29,11 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
 
-      this.auth.isTokenValid().then((result) => {
+      this.auth.isTokenValid().then(() => {
+        this.nav.setRoot(HomePage);
       }, error => {
-        if(error.code == 401){
-          console.log(error);
-          this.rootPage = LoginPage;
-        }
+        console.log(error);
+        this.rootPage = LoginPage;
       });
 
     });

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
-import { ViewStockPage } from "../view-stock/view-stock";
 import { StockProvider } from "../../providers/stock/stock";
-import { ViewUserStockPage } from "../view-user-stock/view-user-stock";
 
 /**
  * Generated class for the PatchUserStockPage page.
