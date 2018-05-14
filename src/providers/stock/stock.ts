@@ -20,6 +20,26 @@ export class StockProvider {
     console.log('Hello StockProvider Provider');
   }
 
+  getHomeStocks(){
+    return this.storage.get('token').then((token) => {
+      return new Promise((resolve, reject) => {
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'X-Auth-Token': token.property
+          })
+        };
+
+        this.http.get(this.global.getApiUrl()+'home', httpOptions)
+          .subscribe(data => {
+            resolve(data);
+          }, error => {
+            reject(error.error);
+          });
+      });
+    });
+  }
+
   createStock(stockData){
     return this.storage.get('token').then((token) => {
       return new Promise((resolve, reject) => {
@@ -53,7 +73,6 @@ export class StockProvider {
         this.http.get(this.global.getApiUrl()+'stocks/'+stockId, httpOptions)
           .subscribe(data => {
             resolve(data);
-            console.log(data);
           }, error => {
             reject(error.error);
           });
