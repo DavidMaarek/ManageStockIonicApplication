@@ -22,7 +22,8 @@
     Prénom : {{ profil?.user.firstname }}<br>
     Nom : {{ profil?.user.name }}<br>
     Email : {{ profil?.user.email }}<br>
-    Société : {{ profil?.user.society }}
+    Société : {{ profil?.user.society }} <br>
+    <a (click)="goToPatchUser()">Modifier mon profil</a>
   </p>
 
   <ion-grid>

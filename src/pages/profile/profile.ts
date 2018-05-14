@@ -5,6 +5,7 @@ import { LoginPage } from "../login/login";
 import { ProfileProvider } from "../../providers/profile/profile";
 import { CreateStockPage } from "../create-stock/create-stock";
 import { ViewStockPage } from "../view-stock/view-stock";
+import { PatchUserPage } from "../patch-user/patch-user";
 
 /**
  * Generated class for the ProfilePage page.
@@ -86,6 +87,12 @@ export class ProfilePage {
   updateProfil(){
     this.profileService.getProfil().then((result) => {
       this.profil = result;
+    });
+  }
+
+  goToPatchUser(){
+    this.navCtrl.push(PatchUserPage, {
+      user: this.profil.user
     });
   }
 

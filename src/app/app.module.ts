@@ -27,6 +27,7 @@ import { AddUserStockPage } from "../pages/add-user-stock/add-user-stock";
 import { UserProvider } from '../providers/user/user';
 import { AccessProvider } from '../providers/access/access';
 import { PatchStockPage } from "../pages/patch-stock/patch-stock";
+import { PatchUserPage } from "../pages/patch-user/patch-user";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { PatchStockPage } from "../pages/patch-stock/patch-stock";
     PatchUserStockPage,
     AddUserStockPage,
     PatchStockPage,
+    PatchUserPage
   ],
   imports: [
     BrowserModule,
@@ -67,6 +69,7 @@ import { PatchStockPage } from "../pages/patch-stock/patch-stock";
     PatchUserStockPage,
     AddUserStockPage,
     PatchStockPage,
+    PatchUserPage
   ],
   providers: [
     StatusBar,
