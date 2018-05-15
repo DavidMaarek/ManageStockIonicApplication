@@ -18,27 +18,29 @@
 
 
 <ion-content padding>
-  <p>
-    Prénom : {{ profil?.user.firstname }}<br>
-    Nom : {{ profil?.user.name }}<br>
-    Email : {{ profil?.user.email }}<br>
-    Société : {{ profil?.user.society }} <br>
-    <a (click)="goToPatchUser()">Modifier mon profil</a>
-  </p>
+  <div *ngIf="profil">
+    <p>
+      Prénom : {{ profil?.user.firstname }}<br>
+      Nom : {{ profil?.user.name }}<br>
+      Email : {{ profil?.user.email }}<br>
+      Société : {{ profil?.user.society }} <br>
+      <a (click)="goToPatchUser()">Modifier mon profil</a>
+    </p>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col col-8>
-        <h3>Vos stocks</h3>
-      </ion-col>
-      <ion-col col-4 text-right>
-        <a (click)="goToCreateStockPage()">Créer un stock</a>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-list>
-    <button ion-item *ngFor="let stock of profil?.stocks" (click)="goToViewStock(stock.id)">
-      {{ stock.name }}
-    </button>
-  </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-8>
+          <h3>Vos stocks</h3>
+        </ion-col>
+        <ion-col col-4 text-right>
+          <a (click)="goToCreateStockPage()">Créer un stock</a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-list>
+      <button ion-item *ngFor="let stock of profil?.stocks" (click)="goToViewStock(stock.id)">
+        {{ stock.name }}
+      </button>
+    </ion-list>
+  </div>
 </ion-content>

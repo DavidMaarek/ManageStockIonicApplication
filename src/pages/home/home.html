@@ -96,18 +96,25 @@
     </ion-buttons>
   </ion-navbar>
 
-  <ion-toolbar>
-    <ion-segment [(ngModel)]="stocks" (ionChange)="onSegmentChanged($event)">
-      <ion-segment-button *ngFor="let stock of stocks" value="{{ stock.name }}">
-        {{ stock.name }}
-      </ion-segment-button>
+  <ion-toolbar *ngIf="stocks">
+    <ion-segment [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)">
+      <ion-segment-button *ngFor="let stock of stocks" value="{{ stock.slug }}">{{ stock.name }}</ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding *ngIf="stocks">
+  <ion-slides #mySlider (ionSlideDidChange)="onSlideChanged($event)">
+    <!--<ion-slide *ngFor="let stock of stocks">
+      <ion-list>
+        <button *ngFor="let product of stock.products" ion-item>
+          {{ product.name }}
+          <br>
+          <span>{{ product.quantity }}</span>
+        </button>
+      </ion-list>
+    </ion-slide>-->
 
-  <ion-slides #mySlider (ionDidChange)="onSlideChanged($event)">
     <ion-slide *ngFor="let stock of stocks">
       <ion-list>
         <button *ngFor="let product of stock.products" ion-item>

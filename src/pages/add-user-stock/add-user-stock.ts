@@ -17,6 +17,7 @@ import { AccessProvider } from "../../providers/access/access";
 })
 export class AddUserStockPage {
 
+  accesses;
   users;
   stockId;
   data = {
@@ -24,6 +25,7 @@ export class AddUserStockPage {
     user: null,
     stock: this.stockId
   };
+  newUsers = [];
 
   constructor(
     public navCtrl: NavController,
@@ -36,6 +38,9 @@ export class AddUserStockPage {
     this.initializeAddUserStock();
     this.stockId = this.navParams.get('stockId');
     this.data.stock = this.navParams.get('stockId');
+
+    this.accesses = this.navParams.get('accesses');
+    console.log(this.accesses);
   }
 
   ionViewDidLoad() {
@@ -50,8 +55,21 @@ export class AddUserStockPage {
 
     this.userService.getAllUsers().then((result) => {
       this.users = result;
-      console.log(this.users);
       loading.dismiss();
+
+      let count = 0;
+      for (let user in this.users) {
+        let id = this.users[user].id;
+
+        for (let access in this.accesses) {
+          let idUserAccess = this.accesses[access].user.id;
+
+          if (id == idUserAccess){
+            let calcul = parseInt(user) - count++;
+            this.users.splice(calcul, 1);
+          }
+        }
+      }
     });
   }
 

@@ -13,23 +13,23 @@
 </ion-header>
 
 
-<ion-content padding>
-  <h1 text-center>Modifications des droits de {{ access?.user.firstname }} {{ access?.user.name }}</h1>
+<ion-content padding *ngIf="access">
+  <h1 text-center>Modifications des droits de {{ access.user.firstname }} {{ access.user.name }}</h1>
 
   <form>
     <ion-item>
       <ion-label>Droits :</ion-label>
       <ion-select [(ngModel)]="formAccess.role" name="role">
-        <ion-option value="0" [selected]="access?.role == 0">Super Administrateur</ion-option>
-        <ion-option value="1" [selected]="access?.role == 1">Administrateur</ion-option>
-        <ion-option value="2" [selected]="access?.role == 2">Utilisateur</ion-option>
+        <ion-option value="0">Super Administrateur</ion-option>
+        <ion-option value="1">Administrateur</ion-option>
+        <ion-option value="2">Utilisateur</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-grid>
       <ion-row>
         <ion-col col-12 text-center>
-          <button ion-button round (click)="doPatchUserStock()">Modifier</button>
+          <button ion-button round [disabled]="formAccess.role == access.role" (click)="doPatchUserStock()">Modifier</button>
         </ion-col>
       </ion-row>
     </ion-grid>

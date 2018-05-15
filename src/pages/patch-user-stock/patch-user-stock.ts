@@ -31,6 +31,7 @@ export class PatchUserStockPage {
   ) {
     this.access = this.navParams.get('access');
     this.stockId = this.navParams.get('stockId');
+    this.formAccess.role = this.access.role;
   }
 
   ionViewDidLoad() {

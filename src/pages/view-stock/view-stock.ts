@@ -70,7 +70,8 @@ export class ViewStockPage {
 
   goToAddUserStock(){
     this.navCtrl.push(AddUserStockPage, {
-      stockId: this.stockId
+      stockId: this.stockId,
+      accesses: this.stock.stockAccesses
     });
   }
 

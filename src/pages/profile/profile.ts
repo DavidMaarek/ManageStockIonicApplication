@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, IonicPage, LoadingController, NavController } from 'ionic-angular';
+import { AlertController, App, IonicPage, LoadingController, NavController } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { LoginPage } from "../login/login";
 import { ProfileProvider } from "../../providers/profile/profile";
@@ -30,7 +30,8 @@ export class ProfilePage {
     public storage: Storage,
     public navCtrl: NavController,
     public profileService: ProfileProvider,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public appCtrl: App,
   ) {}
 
   ionViewDidLoad() {
@@ -68,7 +69,7 @@ export class ProfilePage {
   doLogout() {
     this.storage.clear().then(() => {
       console.log('clear');
-      this.navCtrl.setRoot(LoginPage);
+      this.appCtrl.getRootNav().setRoot(LoginPage);
     })
   }
 

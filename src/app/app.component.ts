@@ -3,11 +3,10 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { TabsPage } from "../pages/tabs/tabs";
 import { LoginPage } from "../pages/login/login";
 import { AuthProvider } from "../providers/auth/auth";
 import { GlobalProvider } from "../providers/global/global";
-import { HomePage } from "../pages/home/home";
+import { TabsPage } from "../pages/tabs/tabs";
 
 @Component({
   templateUrl: 'app.html'
@@ -30,10 +29,11 @@ export class MyApp {
       splashScreen.hide();
 
       this.auth.isTokenValid().then(() => {
-        this.nav.setRoot(HomePage);
+        this.nav.setRoot(TabsPage);
       }, error => {
         console.log(error);
         this.rootPage = LoginPage;
+        console.log(this.rootPage);
       });
 
     });

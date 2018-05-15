@@ -38,7 +38,6 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  // TODO faire en sorte que l'utilisateur ne puisse pas soumettre le formulaire si les champs sont vide, afin de n'avoir que deux reponses possibles lors de la soumission (Invalid credentials / Ok)
   doLogin() {
     let loading = this.loadingCtrl.create({
       content: 'Connexion en cours'
