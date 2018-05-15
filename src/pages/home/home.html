@@ -1,128 +1,31 @@
-<!--<ion-header>
+<ion-header>
   <ion-navbar>
     <ion-title>Manage Stock</ion-title>
 
     <ion-buttons end>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="goToAddProductPage()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 
   <ion-toolbar>
-    <ion-segment [(ngModel)]="stocks">
-      <ion-segment-button *ngFor="let stock of stocks" value="{{ stock.id }}">
-        {{ stock.name }}
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-  <div [ngSwitch]="stocks">
-    <div *ngFor="let stock of stocks">
-      <ion-list *ngSwitchCase="stock.id">
-        <button *ngFor="let product of stock.products" ion-item>
-          {{ product.name }}
-          <br>
-          <span>{{ product.quantity }}</span>
-        </button>
-      </ion-list>
-    </div>
-  </div>
-</ion-content>-->
-
-<!--
-
-<ion-header>
-  <ion-navbar>
-    <ion-title>Manage Stock</ion-title>
-
-    <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-
-  <ion-toolbar>
-    <ion-segment [(ngModel)]="stocks">
-      <ion-segment-button value="0">
-        Toto
-      </ion-segment-button>
-
-      <ion-segment-button value="1">
-        Tata
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-  <div [ngSwitch]="stocks">
-    <div>
-      <ion-list *ngSwitchCase="0">
-        <button ion-item>
-          Produit du stock toto
-          <br>
-          <span>Quantité</span>
-        </button>
-      </ion-list>
-    </div>
-
-    <div>
-      <ion-list *ngSwitchCase="1">
-        <button ion-item>
-          Produit du stock tata
-          <br>
-          <span>Quantité</span>
-        </button>
-      </ion-list>
-    </div>
-  </div>
-</ion-content>
--->
-
-
-
-<ion-header>
-  <ion-navbar>
-    <ion-title>Manage Stock</ion-title>
-
-    <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-
-  <ion-toolbar *ngIf="stocks">
-    <ion-segment [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)">
+    <ion-segment *ngIf="stocks" [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)">
       <ion-segment-button *ngFor="let stock of stocks" value="{{ stock.slug }}">{{ stock.name }}</ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding *ngIf="stocks">
-  <ion-slides #mySlider (ionSlideDidChange)="onSlideChanged($event)">
-    <!--<ion-slide *ngFor="let stock of stocks">
-      <ion-list>
-        <button *ngFor="let product of stock.products" ion-item>
-          {{ product.name }}
-          <br>
-          <span>{{ product.quantity }}</span>
-        </button>
-      </ion-list>
-    </ion-slide>-->
-
-    <ion-slide *ngFor="let stock of stocks">
-      <ion-list>
-        <button *ngFor="let product of stock.products" ion-item>
-          {{ product.name }}
-          <br>
-          <span>{{ product.quantity }}</span>
-        </button>
-      </ion-list>
-    </ion-slide>
-  </ion-slides>
+<ion-content padding>
+    <ion-slides #mySlider *ngIf="stocks" (ionSlideDidChange)="onSlideChanged($event)">
+      <ion-slide *ngFor="let stock of stocks">
+        <ion-list>
+          <button *ngFor="let product of stock.products" ion-item>
+            {{ product.name }}
+            <br>
+            <span>{{ product.quantity }}</span>
+          </button>
+        </ion-list>
+      </ion-slide>
+    </ion-slides>
 </ion-content>

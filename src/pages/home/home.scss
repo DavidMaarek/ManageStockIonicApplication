@@ -2,8 +2,7 @@ page-home {
   ion-list button span {
     font-size: 12px;
   }
-
-  ion-slides {
-    height: 100%;
+  ion-slide.swiper-slide {
+    align-items: flex-start;
   }
 }
