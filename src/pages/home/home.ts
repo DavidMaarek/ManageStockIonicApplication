@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { AlertController, LoadingController, NavController, Slides } from "ionic-angular";
 import { StockProvider } from "../../providers/stock/stock";
+import { PatchUserPage } from "../patch-user/patch-user";
+import { AddProductPage } from "../add-product/add-product";
 
 @Component({
   selector: 'page-home',
@@ -13,6 +15,8 @@ export class HomePage {
   stocks;
   currentStockId;
 
+  secondTime = false;
+
   constructor(
     public alertCtrl: AlertController,
     public navCtrl: NavController,
@@ -23,7 +27,9 @@ export class HomePage {
   }
 
   ionViewDidEnter(){
-    //this.updateHome();
+    if(this.secondTime){
+      this.updateHome();
+    }
   }
 
   initializeHome(){
@@ -34,25 +40,39 @@ export class HomePage {
 
     this.stockService.getHomeStocks().then((result) => {
       this.stocks = result;
+      console.log(this.stocks);
       loading.dismiss();
       this.addSlug();
       this.selectedSegment = this.stocks[0].slug;
+      console.log('Initialize selectedsgement', this.selectedSegment);
+      this.currentStockId = this.stocks[0].id;
+      console.log('Initialize currentStockId', this.currentStockId);
+      this.secondTime = true;
     });
   }
 
-  updateHome(){
+  updateHome() {
     this.stockService.getHomeStocks().then((result) => {
       this.stocks = result;
       this.addSlug();
       this.selectedSegment = this.stocks[0].slug;
+      console.log('Update selectedsgement', this.selectedSegment);
+      this.currentStockId = this.stocks[0].id;
+      console.log('Update currentStockId', this.currentStockId);
     });
   }
 
   // Ajout d'un champs slug car pour les segments / slides il faut une chaine de caratere et non un integer, le slug est donc un identifiant unique d'un stock sous forme de chaine de caractere qui combine l'id du stock et le nom du stock, en supprimant tous les espaces
-  addSlug(){
+  addSlug() {
     for (let stock in this.stocks) {
       this.stocks[stock].slug = this.stocks[stock].id + this.stocks[stock].name.replace(/ /g,'');
     }
+  }
+
+  goToAddProductPage() {
+    this.navCtrl.push(AddProductPage, {
+      stockId: this.currentStockId
+    });
   }
 
   onSegmentChanged(segmentButton) {
@@ -64,7 +84,11 @@ export class HomePage {
 
   onSlideChanged(slider) {
     const currentSlide = this.stocks[slider.getActiveIndex()];
-    this.selectedSegment = currentSlide.slug;
-    this.currentStockId = currentSlide.id;
+
+    // test si le currentSlide existe bien, car dans le cas ou l'utilisateur essaie de slider vers la droite quand il est sur le dernier stock ca plante car il essaie de réassigner currentSlide.slug à this.selectedSegment
+    if (currentSlide){
+      this.selectedSegment = currentSlide.slug;
+      this.currentStockId = currentSlide.id;
+    }
   }
 }

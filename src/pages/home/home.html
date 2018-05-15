@@ -25,7 +25,7 @@
             <br>
             <span>{{ product.quantity }}</span>
           </button>
-          <p *ngIf="product == null">Il n'y a aucun produit dans ce stock</p>
+          <p *ngIf="stock.products.length == 0">Il n'y a aucun produit dans ce stock</p>
         </ion-list>
       </ion-slide>
     </ion-slides>

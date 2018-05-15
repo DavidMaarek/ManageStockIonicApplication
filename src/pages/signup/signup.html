@@ -15,27 +15,27 @@
 
 <ion-content padding>
   <form>
-    <ion-item [class.invalid]="error">
+    <ion-item>
       <ion-label stacked>Nom</ion-label>
       <ion-input [(ngModel)]="signupData.name" name="name" type="text" placeholder="Nom"></ion-input>
     </ion-item>
 
-    <ion-item [class.invalid]="error">
+    <ion-item>
       <ion-label stacked>Prénom</ion-label>
       <ion-input [(ngModel)]="signupData.firstname" name="firstname" type="text" placeholder="Prénom"></ion-input>
     </ion-item>
 
-    <ion-item [class.invalid]="error">
+    <ion-item>
       <ion-label stacked>Email</ion-label>
       <ion-input [(ngModel)]="signupData.email" name="email" type="email" placeholder="Email"></ion-input>
     </ion-item>
 
-    <ion-item [class.invalid]="error">
+    <ion-item>
       <ion-label stacked>Mot de passe</ion-label>
       <ion-input [(ngModel)]="signupData.plainPassword" name="plainPassword" type="password" placeholder="Mot de passe"></ion-input>
     </ion-item>
 
-    <ion-item [class.invalid]="error">
+    <ion-item>
       <ion-label stacked>Société</ion-label>
       <ion-input [(ngModel)]="signupData.society" name="society" type="text" placeholder="Société"></ion-input>
     </ion-item>
