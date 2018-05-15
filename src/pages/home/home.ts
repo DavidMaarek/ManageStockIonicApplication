@@ -40,19 +40,19 @@ export class HomePage {
     });
   }
 
-  // Ajout d'un champs slug car pour les segments / slides il faut une chaine de caratere et non un integer, le slug est donc un identifiant unique d'un stock sous forme de chaine de caractere qui combine l'id du stock et le nom du stock, en supprimant tous les espaces
-  addSlug(){
-    for (let stock in this.stocks) {
-      this.stocks[stock].slug = this.stocks[stock].id + this.stocks[stock].name.replace(/ /g,'');
-    }
-  }
-
   updateHome(){
     this.stockService.getHomeStocks().then((result) => {
       this.stocks = result;
       this.addSlug();
       this.selectedSegment = this.stocks[0].slug;
     });
+  }
+
+  // Ajout d'un champs slug car pour les segments / slides il faut une chaine de caratere et non un integer, le slug est donc un identifiant unique d'un stock sous forme de chaine de caractere qui combine l'id du stock et le nom du stock, en supprimant tous les espaces
+  addSlug(){
+    for (let stock in this.stocks) {
+      this.stocks[stock].slug = this.stocks[stock].id + this.stocks[stock].name.replace(/ /g,'');
+    }
   }
 
   onSegmentChanged(segmentButton) {
@@ -65,8 +65,6 @@ export class HomePage {
   onSlideChanged(slider) {
     const currentSlide = this.stocks[slider.getActiveIndex()];
     this.selectedSegment = currentSlide.slug;
-
     this.currentStockId = currentSlide.id;
-    console.log(this.currentStockId);
   }
 }
