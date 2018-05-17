@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { AlertController, LoadingController, NavController, Slides } from "ionic-angular";
 import { StockProvider } from "../../providers/stock/stock";
 import { AddProductPage } from "../add-product/add-product";
+import { ViewProductPage } from "../view-product/view-product";
 
 @Component({
   selector: 'page-home',
@@ -14,7 +15,6 @@ export class HomePage {
   stocks;
   currentStockId;
 
-  firstTime: boolean = true;
 
   constructor(
     public alertCtrl: AlertController,
@@ -26,7 +26,7 @@ export class HomePage {
   }
 
   ionViewDidEnter(){
-      //this.updateHome();
+      //$this.updateHome();
   }
 
   initializeHome(){
@@ -37,12 +37,10 @@ export class HomePage {
 
     this.stockService.getHomeStocks().then((result) => {
       this.stocks = result;
-      console.log(this.stocks);
       loading.dismiss();
       this.addSlug();
       this.selectedSegment = this.stocks[0].slug;
       this.currentStockId = this.stocks[0].id;
-      this.firstTime = false;
     });
   }
 
@@ -65,6 +63,12 @@ export class HomePage {
   goToAddProductPage() {
     this.navCtrl.push(AddProductPage, {
       stockId: this.currentStockId
+    });
+  }
+
+  goToViewProductPage(productId){
+    this.navCtrl.push(ViewProductPage, {
+      productId: productId
     });
   }
 

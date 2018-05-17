@@ -20,7 +20,7 @@
     <ion-slides #mySlider *ngIf="stocks" (ionSlideDidChange)="onSlideChanged($event)">
       <ion-slide *ngFor="let stock of stocks">
         <ion-list>
-          <button *ngFor="let product of stock.products" ion-item>
+          <button *ngFor="let product of stock.products" ion-item (click)="goToViewProductPage(product.id)">
             {{ product.name }}
             <br>
             <span>{{ product.quantity }}</span>
