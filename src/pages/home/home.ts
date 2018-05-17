@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { AlertController, LoadingController, NavController, Slides } from "ionic-angular";
 import { StockProvider } from "../../providers/stock/stock";
-import { PatchUserPage } from "../patch-user/patch-user";
 import { AddProductPage } from "../add-product/add-product";
 
 @Component({
@@ -23,27 +22,23 @@ export class HomePage {
     public stockService: StockProvider,
     public loadingCtrl: LoadingController
   ) {
-    //this.initializeHome();
+    this.initializeHome();
   }
 
   ionViewDidEnter(){
-      this.initializeHome();
+      //this.updateHome();
   }
 
   initializeHome(){
-    if(this.firstTime){
-      let loading = this.loadingCtrl.create({
-        content: 'Chargement de vos stocks'
-      });
-      loading.present();
-    }
+    let loading = this.loadingCtrl.create({
+      content: 'Chargement de vos stocks'
+    });
+    loading.present();
 
     this.stockService.getHomeStocks().then((result) => {
       this.stocks = result;
       console.log(this.stocks);
-      if(this.firstTime){
-        loading.dismiss();
-      }
+      loading.dismiss();
       this.addSlug();
       this.selectedSegment = this.stocks[0].slug;
       this.currentStockId = this.stocks[0].id;
