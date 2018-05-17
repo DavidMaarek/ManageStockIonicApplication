@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
+import { HistoryProvider } from "../../providers/history/history";
 
 /**
  * Generated class for the HistoryPage page.
@@ -15,11 +16,31 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HistoryPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  stocks;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public loadingCtrl: LoadingController,
+    public historyService: HistoryProvider
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HistoryPage');
+    this.initializeHistory();
+  }
+
+  initializeHistory(){
+    let loading = this.loadingCtrl.create({
+      content: 'Chargement de l\'historique des retraits'
+    });
+    loading.present();
+
+    this.historyService.getHistories().then((result) => {
+      this.stocks = result;
+      console.log(this.stocks);
+      loading.dismiss();
+    });
   }
 
 }

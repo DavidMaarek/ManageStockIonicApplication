@@ -30,6 +30,8 @@ import { PatchStockPage } from "../pages/patch-stock/patch-stock";
 import { PatchUserPage } from "../pages/patch-user/patch-user";
 import { AddProductPage } from "../pages/add-product/add-product";
 import { ProductProvider } from '../providers/product/product';
+import { HistoryPage } from "../pages/history/history";
+import { HistoryProvider } from '../providers/history/history';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { ProductProvider } from '../providers/product/product';
     AddUserStockPage,
     PatchStockPage,
     PatchUserPage,
-    AddProductPage
+    AddProductPage,
+    HistoryPage
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ import { ProductProvider } from '../providers/product/product';
     AddUserStockPage,
     PatchStockPage,
     PatchUserPage,
-    AddProductPage
+    AddProductPage,
+    HistoryPage
   ],
   providers: [
     StatusBar,
@@ -86,6 +90,7 @@ import { ProductProvider } from '../providers/product/product';
     UserProvider,
     AccessProvider,
     ProductProvider,
+    HistoryProvider,
   ]
 })
 export class AppModule {}
