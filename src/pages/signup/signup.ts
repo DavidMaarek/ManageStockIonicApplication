@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
+import { App, IonicPage, LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { AuthProvider } from "../../providers/auth/auth";
 import { HomePage } from "../home/home";
 import { Storage } from "@ionic/storage";
+import { LoginPage } from "../login/login";
 
 /**
  * Generated class for the SignupPage page.
@@ -35,6 +36,7 @@ export class SignupPage {
     public auth: AuthProvider,
     public toastCtrl: ToastController,
     public storage: Storage,
+    public appCtrl: App,
   ) {}
 
   ionViewDidLoad() {
@@ -97,6 +99,10 @@ export class SignupPage {
       signupLoading.dismiss();
       toast.present();
     });
+  }
+
+  goToLoginPage() {
+    this.appCtrl.getRootNav().setRoot(LoginPage);
   }
 
 }

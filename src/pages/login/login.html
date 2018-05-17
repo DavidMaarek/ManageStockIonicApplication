@@ -23,6 +23,20 @@
       <ion-input [(ngModel)]="loginData.password" name="password" type="password" placeholder="Mot de passe"></ion-input>
     </ion-item>
 
-    <button ion-button type="submit" (click)="doLogin()">Connexion</button>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button round type="submit" [disabled]="loginData.login == null || loginData.password == null" (click)="doLogin()">Connexion</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </form>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 text-center>
+        <a (click)="goToSignupPage()">Inscription</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
