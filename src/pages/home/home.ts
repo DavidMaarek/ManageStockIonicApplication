@@ -15,7 +15,7 @@ export class HomePage {
   stocks;
   currentStockId;
 
-  secondTime = false;
+  firstTime: boolean = true;
 
   constructor(
     public alertCtrl: AlertController,
@@ -23,31 +23,31 @@ export class HomePage {
     public stockService: StockProvider,
     public loadingCtrl: LoadingController
   ) {
-    this.initializeHome();
+    //this.initializeHome();
   }
 
   ionViewDidEnter(){
-    if(this.secondTime){
-      this.updateHome();
-    }
+      this.initializeHome();
   }
 
   initializeHome(){
-    let loading = this.loadingCtrl.create({
-      content: 'Chargement de vos stocks'
-    });
-    loading.present();
+    if(this.firstTime){
+      let loading = this.loadingCtrl.create({
+        content: 'Chargement de vos stocks'
+      });
+      loading.present();
+    }
 
     this.stockService.getHomeStocks().then((result) => {
       this.stocks = result;
       console.log(this.stocks);
-      loading.dismiss();
+      if(this.firstTime){
+        loading.dismiss();
+      }
       this.addSlug();
       this.selectedSegment = this.stocks[0].slug;
-      console.log('Initialize selectedsgement', this.selectedSegment);
       this.currentStockId = this.stocks[0].id;
-      console.log('Initialize currentStockId', this.currentStockId);
-      this.secondTime = true;
+      this.firstTime = false;
     });
   }
 
@@ -56,9 +56,7 @@ export class HomePage {
       this.stocks = result;
       this.addSlug();
       this.selectedSegment = this.stocks[0].slug;
-      console.log('Update selectedsgement', this.selectedSegment);
       this.currentStockId = this.stocks[0].id;
-      console.log('Update currentStockId', this.currentStockId);
     });
   }
 
