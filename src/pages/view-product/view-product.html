@@ -25,10 +25,36 @@
     <h2 *ngIf="product.history.length > 0">Historique des retraits</h2>
     <ion-list>
       <ion-item *ngFor="let history of product.history">
-        <ion-icon name="{{ history.type }}" item-start=""></ion-icon> {{ history.quantity }} par {{ history.user.firstname }} {{ history.user.name }}
+        <ion-icon name="{{ history.type }}" item-start=""></ion-icon> <b>{{ history.quantity }}</b> par {{ history.user.firstname }} {{ history.user.name }}
         <br>
         Le {{ history.date | date: 'dd/MM/yyyy'}}
       </ion-item>
     </ion-list>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button round type="submit" (click)="goToAddHistoryPage()">Réapprovisionner le produit</button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button round type="submit" (click)="goToRemoveHistoryPage()">Retirer des produit</button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="stockAccesses.role == 0 || stockAccesses.role == 1">
+        <ion-col col-12 text-center>
+          <button ion-button round type="submit" (click)="goToRemoveHistoryPage()">Modifier le produit</button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="stockAccesses.role == 0">
+        <ion-col col-12 text-center>
+          <button ion-button round type="submit" (click)="goToRemoveHistoryPage()">Supprimer le produit</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>

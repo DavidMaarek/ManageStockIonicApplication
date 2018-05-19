@@ -33,6 +33,7 @@ import { ProductProvider } from '../providers/product/product';
 import { HistoryPage } from "../pages/history/history";
 import { HistoryProvider } from '../providers/history/history';
 import { ViewProductPage } from "../pages/view-product/view-product";
+import { AddHistoryPage } from "../pages/add-history/add-history";
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ViewProductPage } from "../pages/view-product/view-product";
     AddProductPage,
     HistoryPage,
     ViewProductPage,
+    AddHistoryPage,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +83,7 @@ import { ViewProductPage } from "../pages/view-product/view-product";
     AddProductPage,
     HistoryPage,
     ViewProductPage,
+    AddHistoryPage,
   ],
   providers: [
     StatusBar,

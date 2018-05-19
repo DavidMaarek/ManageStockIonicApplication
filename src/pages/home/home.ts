@@ -15,7 +15,6 @@ export class HomePage {
   stocks;
   currentStockId;
 
-
   constructor(
     public alertCtrl: AlertController,
     public navCtrl: NavController,
@@ -26,7 +25,7 @@ export class HomePage {
   }
 
   ionViewDidEnter(){
-      //$this.updateHome();
+      //this.updateHome();
   }
 
   initializeHome(){
@@ -37,6 +36,7 @@ export class HomePage {
 
     this.stockService.getHomeStocks().then((result) => {
       this.stocks = result;
+      console.log(this.stocks);
       loading.dismiss();
       this.addSlug();
       this.selectedSegment = this.stocks[0].slug;
@@ -66,9 +66,10 @@ export class HomePage {
     });
   }
 
-  goToViewProductPage(productId){
+  goToViewProductPage(productId, stockAccesses){
     this.navCtrl.push(ViewProductPage, {
-      productId: productId
+      productId: productId,
+      stockAccesses: stockAccesses
     });
   }
 

@@ -40,4 +40,44 @@ export class HistoryProvider {
     });
   }
 
+  addProductHistory(data){
+    return this.storage.get('token').then((token) => {
+      return new Promise((resolve, reject) => {
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'X-Auth-Token': token.property
+          })
+        };
+
+        this.http.post(this.global.getApiUrl()+'histories/add', data, httpOptions)
+          .subscribe(data => {
+            resolve(data);
+          }, error => {
+            reject(error.error);
+          });
+      });
+    });
+  }
+
+  removeProductHistory(data){
+    return this.storage.get('token').then((token) => {
+      return new Promise((resolve, reject) => {
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'X-Auth-Token': token.property
+          })
+        };
+
+        this.http.post(this.global.getApiUrl()+'histories/remove', data, httpOptions)
+          .subscribe(data => {
+            resolve(data);
+          }, error => {
+            reject(error.error);
+          });
+      });
+    });
+  }
+
 }

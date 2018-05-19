@@ -6,28 +6,34 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Historique des retraits</ion-title>
+    <ion-title>Historique</ion-title>
   </ion-navbar>
 
   <ion-toolbar>
-    <ion-segment >
-      <ion-segment-button *ngFor="let stock of stocks" value="{{ stock.name }}">
-        {{ stock.name }}
-      </ion-segment-button>
+    <ion-segment *ngIf="stocksName" [(ngModel)]="page">
+      <ion-segment-button *ngFor="let stock of stocksName" value="{{ stock.slug }}">{{ stock.name }} {{ stock.id }}</ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
-    <div *ngFor="let stock of stocks">
-      <ion-list>
-        <button ion-item *ngFor="let product of stock.products">
-          {{ product.name }}
-          <button ion-item *ngFor="let history of product.history">
-            {{ history.quantity }} <br> {{ history.type }}
-          </button>
-        </button>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="histories" [ngSwitch]="page">
+    <div *ngFor="let stock of stocksName">
+      <ion-list *ngSwitchCase="stock.slug">
+        <ion-item *ngFor="let history of histories[stock.id]">
+          <ion-icon name="{{ history.type }}" item-start=""></ion-icon>
+          <b>{{ history.quantity }}</b> {{ history.product.name }}
+          <br>
+          Par {{ history.user.firstname }} {{ history.user.name }}
+          <br>
+          Le {{ history.date | date: 'dd/MM/yyyy'}}
+        </ion-item>
       </ion-list>
     </div>
+  </div>
 </ion-content>

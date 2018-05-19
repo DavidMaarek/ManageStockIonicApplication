@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
 import { ProductProvider } from "../../providers/product/product";
+import { AddHistoryPage } from "../add-history/add-history";
 
 /**
  * Generated class for the ViewProductPage page.
@@ -18,6 +19,7 @@ export class ViewProductPage {
 
   productId;
   product;
+  stockAccesses;
 
   constructor(
     public navCtrl: NavController,
@@ -26,6 +28,8 @@ export class ViewProductPage {
     public productService: ProductProvider
   ) {
     this.productId = this.navParams.get('productId');
+    this.stockAccesses = this.navParams.get('stockAccesses');
+    console.log(this.stockAccesses);
   }
 
   ionViewDidLoad() {
@@ -41,9 +45,21 @@ export class ViewProductPage {
 
     this.productService.getProduct(this.productId).then((result) => {
       this.product = result;
-      console.log(this.product);
-      console.log(this.product);
+      this.product.history = this.product.history.reverse();
       loading.dismiss();
+    });
+  }
+
+  goToAddHistoryPage(){
+    this.navCtrl.push(AddHistoryPage, {
+      productId: this.productId
+    });
+  }
+
+  goToRemoveHistoryPage(){
+    this.navCtrl.push(AddHistoryPage, {
+      productId: this.productId,
+      quantity: this.product.quantity
     });
   }
 

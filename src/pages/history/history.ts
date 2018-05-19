@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, LoadingController, NavController, NavParams, Slides } from 'ionic-angular';
 import { HistoryProvider } from "../../providers/history/history";
 
 /**
@@ -15,8 +15,14 @@ import { HistoryProvider } from "../../providers/history/history";
   templateUrl: 'history.html',
 })
 export class HistoryPage {
+  @ViewChild('slider') slider: Slides;
 
-  stocks;
+  page;
+
+  histories;
+  stocksName;
+
+
 
   constructor(
     public navCtrl: NavController,
@@ -30,6 +36,13 @@ export class HistoryPage {
     this.initializeHistory();
   }
 
+  // Ajout d'un champs slug car pour les segments / slides il faut une chaine de caratere et non un integer, le slug est donc un identifiant unique d'un stock sous forme de chaine de caractere qui combine l'id du stock et le nom du stock, en supprimant tous les espaces
+  addSlug() {
+    for (let stock in this.stocksName) {
+      this.stocksName[stock].slug = this.stocksName[stock].id + this.stocksName[stock].name.replace(/ /g,'');
+    }
+  }
+
   initializeHistory(){
     let loading = this.loadingCtrl.create({
       content: 'Chargement de l\'historique des retraits'
@@ -37,9 +50,22 @@ export class HistoryPage {
     loading.present();
 
     this.historyService.getHistories().then((result) => {
-      this.stocks = result;
-      console.log(this.stocks);
+      this.histories = result['histories'];
+      this.stocksName = result['stocksName'];
+      this.addSlug();
+      this.page = this.stocksName[0].slug;
+      console.log('Initialiaze');
+      console.log(this.histories);
+      console.log(this.stocksName);
+      console.log(this.page);
       loading.dismiss();
+    });
+  }
+
+  doRefresh(refresher) {
+    this.historyService.getHistories().then((result) => {
+      this.histories = result['histories'];
+      refresher.complete();
     });
   }
 
