@@ -22,8 +22,6 @@ export class HistoryPage {
   histories;
   stocksName;
 
-
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -64,6 +62,7 @@ export class HistoryPage {
 
   doRefresh(refresher) {
     this.historyService.getHistories().then((result) => {
+      // On refreshs eulement les histories car si on refresh aussi le stocksName le segment freeze
       this.histories = result['histories'];
       refresher.complete();
     });

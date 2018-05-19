@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-  <div *ngIf="product">
+  <div *ngIf="product && stockAccesses">
     <h1 text-center>{{ product.name }}</h1>
     <p>
       Description : {{ product.description }} <br>
@@ -44,7 +44,7 @@
         </ion-col>
       </ion-row>
 
-      <ion-row *ngIf="stockAccesses.role == 0 || stockAccesses.role == 1">
+      <ion-row *ngIf="stockAccesses.role == 0 || stockAccesses?.role == 1">
         <ion-col col-12 text-center>
           <button ion-button round type="submit" (click)="goToRemoveHistoryPage()">Modifier le produit</button>
         </ion-col>

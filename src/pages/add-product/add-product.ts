@@ -31,7 +31,7 @@ export class AddProductPage {
     public productService: ProductProvider,
     public toastCtrl: ToastController
   ) {
-    this.productData.stock = this.navParams.get('stockId');
+    this.productData.stock = parseInt(this.navParams.get('slug').substring(0, 1));
     console.log(this.productData.stock);
   }
 

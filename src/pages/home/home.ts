@@ -13,7 +13,8 @@ export class HomePage {
   @ViewChild('mySlider') slider: Slides;
   selectedSegment: number;
   stocks;
-  currentStockId;
+  stocksName;
+  page;
 
   constructor(
     public alertCtrl: AlertController,
@@ -34,22 +35,29 @@ export class HomePage {
     });
     loading.present();
 
+    this.stockService.getSegmentsStocks().then((result) => {
+      this.stocksName = result;
+      console.log(this.stocksName);
+      for (let stock in this.stocksName) {
+        this.stocksName[stock].slug = this.stocksName[stock].id + this.stocksName[stock].name.replace(/ /g,'');
+      }
+      console.log(this.page);
+    });
+
     this.stockService.getHomeStocks().then((result) => {
       this.stocks = result;
       console.log(this.stocks);
       loading.dismiss();
       this.addSlug();
-      this.selectedSegment = this.stocks[0].slug;
-      this.currentStockId = this.stocks[0].id;
+      this.page = this.stocks[0].slug;
     });
   }
 
-  updateHome() {
+  updateHome(refresher) {
     this.stockService.getHomeStocks().then((result) => {
       this.stocks = result;
       this.addSlug();
-      this.selectedSegment = this.stocks[0].slug;
-      this.currentStockId = this.stocks[0].id;
+      refresher.complete();
     });
   }
 
@@ -60,9 +68,10 @@ export class HomePage {
     }
   }
 
-  goToAddProductPage() {
+  goToAddProductPage(event) {
+    console.log(event);
     this.navCtrl.push(AddProductPage, {
-      stockId: this.currentStockId
+      slug: this.page
     });
   }
 
@@ -71,22 +80,5 @@ export class HomePage {
       productId: productId,
       stockAccesses: stockAccesses
     });
-  }
-
-  onSegmentChanged(segmentButton) {
-    const selectedIndex = this.stocks.findIndex((slide) => {
-      return slide.slug === segmentButton.value;
-    });
-    this.slider.slideTo(selectedIndex);
-  }
-
-  onSlideChanged(slider) {
-    const currentSlide = this.stocks[slider.getActiveIndex()];
-
-    // test si le currentSlide existe bien, car dans le cas ou l'utilisateur essaie de slider vers la droite quand il est sur le dernier stock ca plante car il essaie de réassigner currentSlide.slug à this.selectedSegment
-    if (currentSlide){
-      this.selectedSegment = currentSlide.slug;
-      this.currentStockId = currentSlide.id;
-    }
   }
 }

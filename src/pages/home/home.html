@@ -10,23 +10,27 @@
   </ion-navbar>
 
   <ion-toolbar>
-    <ion-segment *ngIf="stocks" [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)">
-      <ion-segment-button *ngFor="let stock of stocks" value="{{ stock.slug }}">{{ stock.name }}</ion-segment-button>
+    <ion-segment *ngIf="stocks" [(ngModel)]="page">
+      <ion-segment-button *ngFor="let stock of stocksName" value="{{ stock.slug }}">{{ stock.name }}</ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-    <ion-slides #mySlider *ngIf="stocks" (ionSlideDidChange)="onSlideChanged($event)">
-      <ion-slide *ngFor="let stock of stocks">
-        <ion-list>
-          <button *ngFor="let product of stock.products" ion-item (click)="goToViewProductPage(product.id, stock.stockAccesses[0])">
-            {{ product.name }}
-            <br>
-            <span>{{ product.quantity }}</span>
-          </button>
-          <p *ngIf="stock.products.length == 0">Il n'y a aucun produit dans ce stock</p>
-        </ion-list>
-      </ion-slide>
-    </ion-slides>
+  <ion-refresher (ionRefresh)="updateHome($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="stocks" [ngSwitch]="page">
+    <div *ngFor="let stock of stocks">
+      <ion-list *ngSwitchCase="stock.slug">
+        <button *ngFor="let product of stock.products" ion-item (click)="goToViewProductPage(product.id, stock.stockAccesses[0])">
+          {{ product.name }}
+          <br>
+          <span>{{ product.quantity }}</span>
+        </button>
+        <p *ngIf="stock.products.length == 0">Il n'y a aucun produit dans ce stock</p>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>

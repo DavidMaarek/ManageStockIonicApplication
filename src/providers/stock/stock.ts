@@ -40,6 +40,26 @@ export class StockProvider {
     });
   }
 
+  getSegmentsStocks(){
+    return this.storage.get('token').then((token) => {
+      return new Promise((resolve, reject) => {
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'X-Auth-Token': token.property
+          })
+        };
+
+        this.http.get(this.global.getApiUrl()+'segments', httpOptions)
+          .subscribe(data => {
+            resolve(data);
+          }, error => {
+            reject(error.error);
+          });
+      });
+    });
+  }
+
   createStock(stockData){
     return this.storage.get('token').then((token) => {
       return new Promise((resolve, reject) => {
