@@ -37,6 +37,10 @@ export class ViewProductPage {
     this.initializeProduct();
   }
 
+  ionViewWillEnter() {
+    this.updateProduct();
+  }
+
   initializeProduct(){
     let loading = this.loadingCtrl.create({
       content: 'Chargement du produit'
@@ -45,9 +49,15 @@ export class ViewProductPage {
 
     this.productService.getProduct(this.productId).then((result) => {
       this.product = result;
-      console.log(this.product);
       this.product.history = this.product.history.reverse();
       loading.dismiss();
+    });
+  }
+
+  updateProduct() {
+    this.productService.getProduct(this.productId).then((result) => {
+      this.product = result;
+      this.product.history = this.product.history.reverse();
     });
   }
 

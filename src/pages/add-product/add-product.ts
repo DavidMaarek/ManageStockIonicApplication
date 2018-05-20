@@ -93,8 +93,6 @@ export class AddProductPage {
     });
     loading.present();
 
-    console.log(this.productData);
-
     this.productService.createProduct(this.productData).then((result) =>{
       console.log(result);
       loading.dismiss();
@@ -106,7 +104,6 @@ export class AddProductPage {
       });
       successToast.present();
     }, (error) => {
-      console.log(error);
       let toast = this.toastCtrl.create({
         message: error.message,
         duration: 3000,

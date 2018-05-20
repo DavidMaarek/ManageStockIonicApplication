@@ -37,7 +37,7 @@ export class AddHistoryPage {
 
   doAddHistory(){
     let loading = this.loadingCtrl.create({
-      content: 'Modification des drois en cours'
+      content: 'Réapprovisionnement du produit en cours'
     });
     loading.present();
 

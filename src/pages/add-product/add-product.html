@@ -56,7 +56,7 @@
     <ion-grid>
       <ion-row>
         <ion-col col-12 text-center>
-          <button ion-button round type="submit" [disabled]="" (click)="doCreateProduct()">Créer le produit</button>
+          <button ion-button round type="submit" [disabled]="productData.name == null || productData.quantity == null" (click)="doCreateProduct()">Créer le produit</button>
         </ion-col>
       </ion-row>
     </ion-grid>
