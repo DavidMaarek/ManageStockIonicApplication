@@ -22,7 +22,7 @@
 
     <ion-item>
       <ion-label stacked>Description</ion-label>
-      <ion-input [(ngModel)]="productData.description" name="description" type="text" placeholder="Description"></ion-input>
+      <ion-textarea [(ngModel)]="productData.description" name="description" type="text" placeholder="Description"></ion-textarea>
     </ion-item>
 
     <ion-item>
@@ -35,12 +35,28 @@
       <ion-input [(ngModel)]="productData.quantity" name="quantity" type="number" placeholder="Quantité"></ion-input>
     </ion-item>
 
-    <button ion-button (click)="photoGo()">Photo</button>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button (click)="takePicture('picture1')">
+            <span *ngIf="!productData.picture1">Prendre une photo</span>
+            <span *ngIf="productData.picture1">Modifier la photo</span>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button color="danger" *ngIf="productData.picture1" (click)="deletePicture('picture1')">Supprimer la photo</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <img *ngIf="productData.picture1" src="{{ productData.picture1 }}" alt="">
 
     <ion-grid>
       <ion-row>
         <ion-col col-12 text-center>
-          <button ion-button round type="submit" [disabled]="" (click)="doCreateProduct()">Créer</button>
+          <button ion-button round type="submit" [disabled]="" (click)="doCreateProduct()">Créer le produit</button>
         </ion-col>
       </ion-row>
     </ion-grid>

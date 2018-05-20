@@ -17,12 +17,21 @@
   <div *ngIf="product && stockAccesses">
     <h1 text-center>{{ product.name }}</h1>
 
-    <ion-slides *ngIf="product.picture1">
-      <ion-slide>
+    <ion-slides *ngIf="product.picture1 || product.picture2 || product.picture3 || product.picture4 || product.picture5">
+      <ion-slide *ngIf="product.picture1">
         <img src="https://www.manage-stock.davidmaarek.fr/uploads/files/{{ product.picture1 }}" alt="">
       </ion-slide>
-      <ion-slide>
-        <p>Photo 2</p>
+      <ion-slide *ngIf="product.picture2">
+        <img src="https://www.manage-stock.davidmaarek.fr/uploads/files/{{ product.picture2 }}" alt="">
+      </ion-slide>
+      <ion-slide *ngIf="product.picture3">
+        <img src="https://www.manage-stock.davidmaarek.fr/uploads/files/{{ product.picture3 }}" alt="">
+      </ion-slide>
+      <ion-slide *ngIf="product.picture4">
+        <img src="https://www.manage-stock.davidmaarek.fr/uploads/files/{{ product.picture4 }}" alt="">
+      </ion-slide>
+      <ion-slide *ngIf="product.picture5">
+        <img src="https://www.manage-stock.davidmaarek.fr/uploads/files/{{ product.picture5 }}" alt="">
       </ion-slide>
     </ion-slides>
 

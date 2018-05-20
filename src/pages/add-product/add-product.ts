@@ -23,7 +23,11 @@ export class AddProductPage {
     quantity: null,
     description: null,
     stock: null,
-    picture1: null
+    picture1: null,
+    picture2: null,
+    picture3: null,
+    picture4: null,
+    picture5: null
   };
 
   constructor(
@@ -42,21 +46,44 @@ export class AddProductPage {
     console.log('ionViewDidLoad AddProductPage');
   }
 
-  photoGo() {
+  takePicture(picture) {
     const options: CameraOptions = {
-      quality: 50,
+      quality: 20,
+      targetWidth: 600,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     };
 
     this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64:
-      this.productData.picture1 = 'data:image/jpeg;base64,' + imageData;
+      if(picture == "picture1") {
+        this.productData.picture1 = 'data:image/jpeg;base64,' + imageData;
+      } else if(picture == "picture2") {
+        this.productData.picture2 = 'data:image/jpeg;base64,' + imageData;
+      } else if(picture == "picture3") {
+        this.productData.picture3 = 'data:image/jpeg;base64,' + imageData;
+      } else if(picture == "picture4") {
+        this.productData.picture4 = 'data:image/jpeg;base64,' + imageData;
+      } else if(picture == "picture5") {
+        this.productData.picture5 = 'data:image/jpeg;base64,' + imageData;
+      }
     }, (err) => {
       console.log(err);
     });
+  }
+
+  deletePicture(picture) {
+    if(picture == "picture1") {
+      this.productData.picture1 = null;
+    } else if(picture == "picture2") {
+      this.productData.picture2 = null;
+    } else if(picture == "picture3") {
+      this.productData.picture3 = null;
+    } else if(picture == "picture4") {
+      this.productData.picture4 = null;
+    } else if(picture == "picture5") {
+      this.productData.picture5 = null;
+    }
   }
 
 
