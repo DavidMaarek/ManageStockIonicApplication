@@ -44,7 +44,7 @@ export class AddProductPage {
 
   photoGo() {
     const options: CameraOptions = {
-      quality: 100,
+      quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
@@ -55,7 +55,7 @@ export class AddProductPage {
       // If it's base64:
       this.productData.picture1 = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
-      // Handle error
+      console.log(err);
     });
   }
 

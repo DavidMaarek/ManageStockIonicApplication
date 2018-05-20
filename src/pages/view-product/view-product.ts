@@ -45,6 +45,7 @@ export class ViewProductPage {
 
     this.productService.getProduct(this.productId).then((result) => {
       this.product = result;
+      console.log(this.product);
       this.product.history = this.product.history.reverse();
       loading.dismiss();
     });

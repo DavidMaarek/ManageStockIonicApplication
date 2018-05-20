@@ -16,6 +16,16 @@
 <ion-content padding>
   <div *ngIf="product && stockAccesses">
     <h1 text-center>{{ product.name }}</h1>
+
+    <ion-slides *ngIf="product.picture1">
+      <ion-slide>
+        <img src="https://www.manage-stock.davidmaarek.fr/uploads/files/{{ product.picture1 }}" alt="">
+      </ion-slide>
+      <ion-slide>
+        <p>Photo 2</p>
+      </ion-slide>
+    </ion-slides>
+
     <p>
       Description : {{ product.description }} <br>
       Référence : {{ product.reference }} <br>

@@ -33,6 +33,7 @@
           <br>
           Le {{ history.date | date: 'dd/MM/yyyy'}}
         </ion-item>
+        <p *ngIf="histories[stock.id].length == 0">Aucun produit de ce stock n'a été retiré ou réapprovisionné</p>
       </ion-list>
     </div>
   </div>
