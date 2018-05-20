@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { AlertController, LoadingController, NavController, Slides } from "ionic-angular";
+import { Component } from '@angular/core';
+import { AlertController, LoadingController, NavController } from "ionic-angular";
 import { StockProvider } from "../../providers/stock/stock";
 import { AddProductPage } from "../add-product/add-product";
 import { ViewProductPage } from "../view-product/view-product";
@@ -10,8 +10,6 @@ import { ViewProductPage } from "../view-product/view-product";
 })
 export class HomePage {
 
-  @ViewChild('mySlider') slider: Slides;
-  selectedSegment: number;
   stocks;
   stocksName;
   page;
@@ -21,12 +19,14 @@ export class HomePage {
     public navCtrl: NavController,
     public stockService: StockProvider,
     public loadingCtrl: LoadingController
-  ) {
+  ) {}
+
+  ionViewDidLoad() {
     this.initializeHome();
   }
 
-  ionViewDidEnter(){
-      //this.updateHome();
+  ionViewWillEnter() {
+    this.updateHome();
   }
 
   initializeHome(){
@@ -37,39 +37,47 @@ export class HomePage {
 
     this.stockService.getSegmentsStocks().then((result) => {
       this.stocksName = result;
-      console.log(this.stocksName);
       for (let stock in this.stocksName) {
         this.stocksName[stock].slug = this.stocksName[stock].id + this.stocksName[stock].name.replace(/ /g,'');
       }
-      console.log(this.page);
+      this.page = this.stocksName[0].slug;
     });
 
     this.stockService.getHomeStocks().then((result) => {
       this.stocks = result;
-      console.log(this.stocks);
-      loading.dismiss();
       this.addSlug();
       this.page = this.stocks[0].slug;
+      loading.dismiss();
     });
+    console.log('Initialize Home');
   }
 
-  updateHome(refresher) {
+  updateHome() {
+    this.stockService.getHomeStocks().then((result) => {
+      this.stocks = result;
+      this.addSlug();
+    });
+    console.log('Update Home');
+  }
+
+  refreshHome(refresher) {
     this.stockService.getHomeStocks().then((result) => {
       this.stocks = result;
       this.addSlug();
       refresher.complete();
     });
+    console.log('Refresh Home');
   }
 
-  // Ajout d'un champs slug car pour les segments / slides il faut une chaine de caratere et non un integer, le slug est donc un identifiant unique d'un stock sous forme de chaine de caractere qui combine l'id du stock et le nom du stock, en supprimant tous les espaces
+
+  // Ajout d'un champs slug car pour les segments il faut une chaine de caratere et non un integer, le slug est donc un identifiant unique d'un stock sous forme de chaine de caractere qui combine l'id du stock et le nom du stock, en supprimant tous les espaces
   addSlug() {
     for (let stock in this.stocks) {
       this.stocks[stock].slug = this.stocks[stock].id + this.stocks[stock].name.replace(/ /g,'');
     }
   }
 
-  goToAddProductPage(event) {
-    console.log(event);
+  goToAddProductPage() {
     this.navCtrl.push(AddProductPage, {
       slug: this.page
     });

@@ -22,7 +22,8 @@
       Quantité : {{ product.quantity }} <br>
     </p>
 
-    <h2 *ngIf="product.history.length > 0">Historique des retraits</h2>
+    <h2>Historique</h2>
+    <p *ngIf="product.history.length == 0">Ce produit n'a jamais été retiré ou réapprovisionné</p>
     <ion-list>
       <ion-item *ngFor="let history of product.history">
         <ion-icon name="{{ history.type }}" item-start=""></ion-icon> <b>{{ history.quantity }}</b> par {{ history.user.firstname }} {{ history.user.name }}

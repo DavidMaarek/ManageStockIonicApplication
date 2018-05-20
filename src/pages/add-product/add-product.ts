@@ -21,7 +21,8 @@ export class AddProductPage {
     reference: null,
     quantity: null,
     description: null,
-    stock: null
+    stock: null,
+    picture1: null
   };
 
   constructor(

@@ -64,6 +64,8 @@ export class HistoryPage {
     this.historyService.getHistories().then((result) => {
       // On refreshs eulement les histories car si on refresh aussi le stocksName le segment freeze
       this.histories = result['histories'];
+      //this.stocksName = result['stocksName'];
+      this.addSlug();
       refresher.complete();
     });
   }
