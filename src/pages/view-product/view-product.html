@@ -51,28 +51,28 @@
       </ion-item>
     </ion-list>
 
-    <ion-grid>
+    <ion-grid *ngIf="stockAccesses">
       <ion-row>
         <ion-col col-12 text-center>
-          <button ion-button round type="submit" (click)="goToAddHistoryPage()">Réapprovisionner le produit</button>
+          <button ion-button round icon-start (click)="goToAddHistoryPage()"><ion-icon name="add"></ion-icon>Réapprovisionner le produit</button>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col col-12 text-center>
-          <button ion-button round type="submit" (click)="goToRemoveHistoryPage()">Retirer des produit</button>
+          <button ion-button round icon-start (click)="goToRemoveHistoryPage()"><ion-icon name="remove"></ion-icon>Retirer des produits</button>
         </ion-col>
       </ion-row>
 
-      <ion-row *ngIf="stockAccesses.role == 0 || stockAccesses?.role == 1">
+      <ion-row *ngIf="stockAccesses.role == 0 || stockAccesses.role == 1">
         <ion-col col-12 text-center>
-          <button ion-button round type="submit" (click)="goToRemoveHistoryPage()">Modifier le produit</button>
+          <button ion-button round icon-start (click)="goToRemoveHistoryPage()"><ion-icon name="brush"></ion-icon>Modifier le produit</button>
         </ion-col>
       </ion-row>
 
       <ion-row *ngIf="stockAccesses.role == 0">
         <ion-col col-12 text-center>
-          <button ion-button round type="submit" (click)="goToRemoveHistoryPage()">Supprimer le produit</button>
+          <button ion-button round icon-start color="danger" (click)="goToRemoveHistoryPage()"><ion-icon name="trash"></ion-icon>Supprimer le produit</button>
         </ion-col>
       </ion-row>
     </ion-grid>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
 import { ProductProvider } from "../../providers/product/product";
 import { AddHistoryPage } from "../add-history/add-history";
+import { RemoveHistoryPage } from "../remove-history/remove-history";
 
 /**
  * Generated class for the ViewProductPage page.
@@ -68,7 +69,7 @@ export class ViewProductPage {
   }
 
   goToRemoveHistoryPage(){
-    this.navCtrl.push(AddHistoryPage, {
+    this.navCtrl.push(RemoveHistoryPage, {
       productId: this.productId,
       quantity: this.product.quantity
     });
