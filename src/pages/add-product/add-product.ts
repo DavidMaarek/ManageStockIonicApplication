@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { ProductProvider } from "../../providers/product/product";
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 /**
  * Generated class for the AddProductPage page.
@@ -30,7 +31,8 @@ export class AddProductPage {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public productService: ProductProvider,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public camera: Camera
   ) {
     this.productData.stock = parseInt(this.navParams.get('slug').substring(0, 1));
     console.log(this.productData.stock);
@@ -39,6 +41,24 @@ export class AddProductPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddProductPage');
   }
+
+  photoGo() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    };
+
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+      this.productData.picture1 = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+    });
+  }
+
 
   doCreateProduct() {
     let loading = this.loadingCtrl.create({

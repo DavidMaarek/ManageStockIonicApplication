@@ -34,6 +34,7 @@ import { HistoryPage } from "../pages/history/history";
 import { HistoryProvider } from '../providers/history/history';
 import { ViewProductPage } from "../pages/view-product/view-product";
 import { AddHistoryPage } from "../pages/add-history/add-history";
+import { Camera } from "@ionic-native/camera";
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { AddHistoryPage } from "../pages/add-history/add-history";
     AccessProvider,
     ProductProvider,
     HistoryProvider,
+    Camera
   ]
 })
 export class AppModule {}
