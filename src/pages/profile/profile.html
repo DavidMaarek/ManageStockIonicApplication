@@ -18,6 +18,10 @@
 
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="refreshProfil($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <div *ngIf="profil">
     <p>
       Prénom : {{ profil.user.firstname }}<br>

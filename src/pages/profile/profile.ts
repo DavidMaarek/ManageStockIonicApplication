@@ -59,6 +59,13 @@ export class ProfilePage {
     });
   }
 
+  refreshProfil(refresher) {
+    this.profileService.getProfil().then((result) => {
+      this.profil = result;
+      refresher.complete();
+    });
+  }
+
   settingsActionSheet() {
     let settingsActionSheet = this.actionSheetCtrl.create({
       title: 'Profil',
@@ -112,8 +119,6 @@ export class ProfilePage {
       this.appCtrl.getRootNav().setRoot(LoginPage);
     })
   }
-
-
 
   goToPatchUser(){
     this.navCtrl.push(PatchUserPage, {
