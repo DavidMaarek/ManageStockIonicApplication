@@ -15,10 +15,10 @@
 
 <ion-content padding>
 
-  <!--<ion-refresher (ionRefresh)="initializeProfil()">
+  <ion-refresher (ionRefresh)="refreshViewStock($event)">
     <ion-refresher-content>
     </ion-refresher-content>
-  </ion-refresher>-->
+  </ion-refresher>
 
   <div *ngIf="stock">
     <h1 text-center>{{ stock.name }}</h1>

@@ -68,6 +68,15 @@ export class ViewStockPage {
     });
   }
 
+  refreshViewStock(refresher){
+    this.stockService.getProfileStock(this.stockId).then((result) => {
+      this.stock = result;
+      refresher.complete();
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
   goToAddUserStock(){
     this.navCtrl.push(AddUserStockPage, {
       stockId: this.stockId,
