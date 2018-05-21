@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  AlertController, IonicPage, LoadingController, NavController, NavParams,
-  ToastController
-} from 'ionic-angular';
+import { AlertController, IonicPage, LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { ProductProvider } from "../../providers/product/product";
 import { AddHistoryPage } from "../add-history/add-history";
 import { RemoveHistoryPage } from "../remove-history/remove-history";
@@ -32,7 +29,7 @@ export class ViewProductPage {
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
-    public productService: ProductProvider
+    public productService: ProductProvider,
   ) {
     this.productId = this.navParams.get('productId');
     this.stockAccesses = this.navParams.get('stockAccesses');
@@ -63,6 +60,14 @@ export class ViewProductPage {
     this.productService.getProduct(this.productId).then((result) => {
       this.product = result;
       this.product.history = this.product.history.reverse();
+    });
+  }
+
+  refreshProduct(refresher) {
+    this.productService.getProduct(this.productId).then((result) => {
+      this.product = result;
+      this.product.history = this.product.history.reverse();
+      refresher.complete();
     });
   }
 
