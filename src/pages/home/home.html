@@ -2,7 +2,7 @@
   <ion-navbar>
     <ion-title>Manage Stock</ion-title>
 
-    <ion-buttons end>
+    <ion-buttons end *ngIf="stocks">
       <button ion-button icon-only (click)="goToAddProductPage()">
         <ion-icon name="add"></ion-icon>
       </button>
@@ -10,7 +10,7 @@
   </ion-navbar>
 
   <ion-toolbar>
-    <ion-segment *ngIf="stocks" [(ngModel)]="page">
+    <ion-segment *ngIf="stocksName" [(ngModel)]="page">
       <ion-segment-button *ngFor="let stock of stocksName" value="{{ stock.slug }}">{{ stock.name }}</ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -20,6 +20,8 @@
   <ion-refresher (ionRefresh)="refreshHome($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+
+  <p *ngIf="stocks == 0" text-center>Vous n'avez aucun stock, vous pouvez en créer un depuis votre profil</p>
 
   <div *ngIf="stocks" [ngSwitch]="page">
     <div *ngFor="let stock of stocks">

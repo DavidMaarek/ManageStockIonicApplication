@@ -27,6 +27,8 @@ export class SignupPage {
     society: null,
   };
 
+  sameEmail;
+
   data: any;
 
   constructor(
@@ -45,7 +47,7 @@ export class SignupPage {
 
   // Fonction d'inscription de l'utilisateur
   doSignup(){
-    // Affichage de loder
+    // Affichage du loder
     let signupLoading = this.loadingCtrl.create({
       content: 'Inscription en cours'
     });
@@ -81,7 +83,7 @@ export class SignupPage {
         this.navCtrl.setRoot(HomePage);
       }, (error) => {
         let toast = this.toastCtrl.create({
-          message: error.error.message,
+          message: error.message,
           duration: 3000,
           position: 'top'
         });
@@ -91,8 +93,11 @@ export class SignupPage {
 
       this.navCtrl.setRoot(HomePage);
     }, (error) => {
+      if(error.errors.children.email.errors[0]) {
+        this.sameEmail = error.errors.children.email.errors[0];
+      }
       let toast = this.toastCtrl.create({
-        message: error.error.message,
+        message: error.message,
         duration: 3000,
         position: 'top'
       });

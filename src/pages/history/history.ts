@@ -43,7 +43,7 @@ export class HistoryPage {
 
   initializeHistory(){
     let loading = this.loadingCtrl.create({
-      content: 'Chargement de l\'historique des retraits'
+      content: 'Chargement de l\'historique'
     });
     loading.present();
 
@@ -52,21 +52,26 @@ export class HistoryPage {
       this.stocksName = result['stocksName'];
       this.addSlug();
       this.page = this.stocksName[0].slug;
-      console.log('Initialiaze');
-      console.log(this.histories);
-      console.log(this.stocksName);
-      console.log(this.page);
+      loading.dismiss();
+    }, error => {
+      console.log(error);
+      this.histories = 0;
       loading.dismiss();
     });
   }
 
   doRefresh(refresher) {
     this.historyService.getHistories().then((result) => {
-      // On refreshs eulement les histories car si on refresh aussi le stocksName le segment freeze
+      // On refreshs seulement les histories car si on refresh aussi le stocksName le segment freeze
       this.histories = result['histories'];
       //this.stocksName = result['stocksName'];
       this.addSlug();
       refresher.complete();
+    }, error => {
+      console.log(error);
+      refresher.complete();
+      this.histories = null;
+      this.stocksName = null;
     });
   }
 

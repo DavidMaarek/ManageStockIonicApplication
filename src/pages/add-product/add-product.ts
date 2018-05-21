@@ -93,6 +93,8 @@ export class AddProductPage {
     });
     loading.present();
 
+    console.log(this.productData);
+
     this.productService.createProduct(this.productData).then((result) =>{
       console.log(result);
       loading.dismiss();

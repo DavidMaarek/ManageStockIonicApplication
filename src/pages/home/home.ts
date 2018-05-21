@@ -35,29 +35,28 @@ export class HomePage {
     });
     loading.present();
 
-    this.stockService.getSegmentsStocks().then((result) => {
-      this.stocksName = result;
-      for (let stock in this.stocksName) {
-        this.stocksName[stock].slug = this.stocksName[stock].id + this.stocksName[stock].name.replace(/ /g,'');
-      }
-      this.page = this.stocksName[0].slug;
-    });
-
     this.stockService.getHomeStocks().then((result) => {
       this.stocks = result;
       this.addSlug();
+      // On duplique les stocks pour boucler dessus sur les segments afin de pouvoir raffraichir les données sans celles du stock afin qu'il ne bug pas
+      this.stocksName = this.stocks;
       this.page = this.stocks[0].slug;
       loading.dismiss();
+    }, error => {
+      console.log(error);
+      this.stocks = 0;
+      loading.dismiss();
     });
-    console.log('Initialize Home');
   }
 
   updateHome() {
     this.stockService.getHomeStocks().then((result) => {
       this.stocks = result;
       this.addSlug();
+    }, error => {
+      console.log(error);
+      this.stocks = null;
     });
-    console.log('Update Home');
   }
 
   refreshHome(refresher) {
@@ -65,8 +64,11 @@ export class HomePage {
       this.stocks = result;
       this.addSlug();
       refresher.complete();
+    }, error => {
+      console.log(error);
+      this.stocks = null;
+      refresher.complete();
     });
-    console.log('Refresh Home');
   }
 
 
@@ -75,6 +77,10 @@ export class HomePage {
     for (let stock in this.stocks) {
       this.stocks[stock].slug = this.stocks[stock].id + this.stocks[stock].name.replace(/ /g,'');
     }
+  }
+
+  onSegmentChange() {
+    console.log('Changed');
   }
 
   goToAddProductPage() {

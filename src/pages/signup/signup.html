@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>signup</ion-title>
+    <ion-title>Inscription</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -24,6 +24,8 @@
       <ion-label stacked>Prénom</ion-label>
       <ion-input [(ngModel)]="signupData.firstname" name="firstname" type="text" placeholder="Prénom"></ion-input>
     </ion-item>
+
+    <p *ngIf="sameEmail" text-center>{{ sameEmail }}</p>
 
     <ion-item>
       <ion-label stacked>Email</ion-label>

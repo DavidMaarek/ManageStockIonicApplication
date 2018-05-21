@@ -40,7 +40,6 @@ export class MyApp {
       }, error => {
         console.log(error);
         this.rootPage = LoginPage;
-        console.log(this.rootPage);
         loading.dismiss();
       });
 

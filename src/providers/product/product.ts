@@ -34,6 +34,7 @@ export class ProductProvider {
           .subscribe(data => {
             resolve(data);
           }, error => {
+            console.log(error);
             reject(error.error);
           });
       });

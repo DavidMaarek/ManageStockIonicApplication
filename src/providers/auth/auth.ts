@@ -25,7 +25,7 @@ export class AuthProvider {
         .subscribe(data => {
           resolve(data);
         }, error => {
-          reject(error);
+          reject(error.error);
         });
     });
   }
@@ -41,7 +41,8 @@ export class AuthProvider {
         .subscribe(data => {
           resolve(data);
         }, error => {
-          reject(error);
+          console.log(error);
+          reject(error.error);
         });
     });
   }

@@ -20,38 +20,40 @@
     </ion-refresher-content>
   </ion-refresher>-->
 
-  <h1 text-center>{{ stock?.name }}</h1>
+  <div *ngIf="stock">
+    <h1 text-center>{{ stock.name }}</h1>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col col-6>
-        <h3>Utilisateurs</h3>
-      </ion-col>
-      <ion-col col-6 text-right>
-        <a (click)="goToAddUserStock()">Ajouter un utilisateur</a>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-list>
-    <button ion-item *ngFor="let access of stock?.stockAccesses" (click)="goToUserStock(access)">
-      {{ access.user.firstname }} {{ access.user.name }} <br>
-      <span *ngIf="access.role == 0">Super Admin</span>
-      <span *ngIf="access.role == 1">Admin</span>
-      <span *ngIf="access.role == 2">Utilisateur</span>
-    </button>
-  </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <h3>Utilisateurs</h3>
+        </ion-col>
+        <ion-col col-6 text-right>
+          <a (click)="goToAddUserStock()">Ajouter un utilisateur</a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-list>
+      <button ion-item *ngFor="let access of stock.stockAccesses" (click)="goToUserStock(access)">
+        {{ access.user.firstname }} {{ access.user.name }} <br>
+        <span *ngIf="access.role == 0">Super Admin</span>
+        <span *ngIf="access.role == 1">Admin</span>
+        <span *ngIf="access.role == 2">Utilisateur</span>
+      </button>
+    </ion-list>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col col-12 text-center>
-        <button ion-button icon-start round (click)="goToPathStock()"><ion-icon name="brush"></ion-icon>Modifier le nom du stock</button>
-      </ion-col>
-    </ion-row>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button icon-start round (click)="goToPathStock()"><ion-icon name="brush"></ion-icon>Modifier le nom du stock</button>
+        </ion-col>
+      </ion-row>
 
-    <ion-row>
-      <ion-col col-12 text-center>
-        <button ion-button icon-start round color="danger" (click)="deleteStock()"><ion-icon name="trash"></ion-icon>Supprimer le stock</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button icon-start round color="danger" (click)="deleteStock()"><ion-icon name="trash"></ion-icon>Supprimer le stock</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

@@ -62,7 +62,7 @@ export class LoginPage {
       this.navCtrl.setRoot(TabsPage);
     }, (error) => {
       let toast = this.toastCtrl.create({
-        message: error.error.message,
+        message: error.message,
         duration: 3000,
         position: 'top'
       });

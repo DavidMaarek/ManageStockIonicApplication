@@ -46,7 +46,7 @@ export class PatchUserPage {
 
   doPatchUser() {
     let loading = this.loadingCtrl.create({
-      content: 'Modification des drois en cours'
+      content: 'Modification du profil en cours'
     });
     loading.present();
 
@@ -61,9 +61,8 @@ export class PatchUserPage {
       });
       successToast.present();
     }, (error) => {
-      console.log(error);
       let toast = this.toastCtrl.create({
-        message: error.error.message,
+        message: error.message,
         duration: 3000,
         position: 'top'
       });

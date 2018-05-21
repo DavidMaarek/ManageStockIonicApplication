@@ -22,6 +22,8 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
+  <p *ngIf="histories == 0" text-center>Vous n'avez aucun stock, vous pouvez en créer un depuis votre profil</p>
+
   <div *ngIf="histories" [ngSwitch]="page">
     <div *ngFor="let stock of stocksName">
       <ion-list *ngSwitchCase="stock.slug">

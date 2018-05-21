@@ -57,7 +57,7 @@ export class RemoveHistoryPage {
     }, (error) => {
       console.log(error);
       let toast = this.toastCtrl.create({
-        message: error.error.message,
+        message: error.message,
         duration: 3000,
         position: 'top'
       });
