@@ -14,10 +14,10 @@
 
 
 <ion-content padding>
-  <form>
+  <form *ngIf="stock">
     <ion-item>
       <ion-label stacked>Email</ion-label>
-      <ion-input [(ngModel)]="patchStockData.name" name="name" type="text" placeholder="Nom" value="{{ stock?.name }}"></ion-input>
+      <ion-input [(ngModel)]="patchStockData.name" name="name" type="text" placeholder="Nom" value="{{ stock.name }}"></ion-input>
     </ion-item>
 
     <ion-grid>

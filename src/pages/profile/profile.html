@@ -40,7 +40,9 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <p *ngIf="!profil.stocks">Vous n'avez aucun stock</p>
+
+    <p *ngIf="profil.stocks.length == 0" text-center>Vous n'avez aucun stock</p>
+
     <ion-list *ngIf="profil.stocks">
       <button ion-item *ngFor="let stock of profil.stocks" (click)="goToViewStock(stock.id)">
         {{ stock.name }}

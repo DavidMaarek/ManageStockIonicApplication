@@ -49,6 +49,7 @@ export class ProfilePage {
 
     this.profileService.getProfil().then((result) => {
       this.profil = result;
+      console.log(this.profil);
       loading.dismiss();
     });
   }

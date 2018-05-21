@@ -55,7 +55,7 @@ export class HomePage {
       this.addSlug();
     }, error => {
       console.log(error);
-      this.stocks = null;
+      this.stocks = 0;
     });
   }
 
@@ -66,7 +66,7 @@ export class HomePage {
       refresher.complete();
     }, error => {
       console.log(error);
-      this.stocks = null;
+      this.stocks = 0;
       refresher.complete();
     });
   }

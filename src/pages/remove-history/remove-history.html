@@ -19,7 +19,7 @@
   <form>
     <ion-item>
       <ion-label stacked>Quantité</ion-label>
-      <ion-input [(ngModel)]="removeHistoryData.quantity" name="quantity" type="number" placeholder="Quantité"></ion-input>
+      <ion-input [(ngModel)]="removeHistoryData.quantity" name="quantity" type="tel" placeholder="Quantité"></ion-input>
     </ion-item>
 
     <p *ngIf="removeHistoryData.quantity > productQuantity">Vous ne pouvez pas retirer plus de produit qu'il n'en reste</p>

@@ -38,7 +38,7 @@ export class CreateStockPage {
     public stockService: StockProvider,
     public toastCtrl: ToastController,
   ) {
-    // On récupere les donnes du user
+    // On récupere les donnees du user
     this.user = this.navParams.get('user');
     // On assigne le user au stockAccesses
     this.stockData.stockAccesses[0].user = this.user.id;

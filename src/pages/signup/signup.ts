@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { App, IonicPage, LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { AuthProvider } from "../../providers/auth/auth";
-import { HomePage } from "../home/home";
 import { Storage } from "@ionic/storage";
 import { LoginPage } from "../login/login";
+import { TabsPage } from "../tabs/tabs";
 
 /**
  * Generated class for the SignupPage page.
@@ -80,7 +80,7 @@ export class SignupPage {
             error => console.error('Error storing token', error)
           );
         loginLoading.dismiss();
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot(TabsPage);
       }, (error) => {
         let toast = this.toastCtrl.create({
           message: error.message,
@@ -90,8 +90,6 @@ export class SignupPage {
         loginLoading.dismiss();
         toast.present();
       });
-
-      this.navCtrl.setRoot(HomePage);
     }, (error) => {
       if(error.errors.children.email.errors[0]) {
         this.sameEmail = error.errors.children.email.errors[0];

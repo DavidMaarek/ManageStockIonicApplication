@@ -7,55 +7,57 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ access?.user.firstname }} {{ access?.user.name }}</ion-title>
+    <ion-title *ngIf="access">{{ access.user.firstname }} {{ access.user.name }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <p>
-    {{ access?.user.firstname }} {{ access?.user.name }} <br>
-    Droits :
-    <span *ngIf="access?.role == 0">Super Admin</span>
-    <span *ngIf="access?.role == 1">Admin</span>
-    <span *ngIf="access?.role == 2">Utilisateur</span>
-  </p>
+  <div *ngIf="access">
+    <p>
+      {{ access.user.firstname }} {{ access.user.name }} <br>
+      Droits :
+      <span *ngIf="access.role == 0">Super Administrateur</span>
+      <span *ngIf="access.role == 1">Administrateur</span>
+      <span *ngIf="access.role == 2">Utilisateur</span>
+    </p>
 
-  <p>Ce que peut faire {{ access?.user.firstname }} :</p>
+    <p>Ce que peut faire {{ access.user.firstname }} :</p>
 
-  <ul *ngIf="access?.role == 0">
-    <li>Créer un nouveau produit</li>
-    <li>Modifier un produit</li>
-    <li>Supprimer un produit</li>
-    <li>Modifier le stock (nom et utilisateurs)</li>
-    <li>Réapprovisionner un produit</li>
-    <li>Retirer un produit</li>
-  </ul>
+    <ul *ngIf="access.role == 0">
+      <li>Créer un nouveau produit</li>
+      <li>Modifier un produit</li>
+      <li>Supprimer un produit</li>
+      <li>Modifier le stock (nom et utilisateurs)</li>
+      <li>Réapprovisionner un produit</li>
+      <li>Retirer un produit</li>
+    </ul>
 
-  <ul *ngIf="access?.role == 1">
-    <li>Créer un nouveau produit</li>
-    <li>Modifier un produit</li>
-    <li>Réapprovisionner un produit</li>
-    <li>Retirer un produit</li>
-  </ul>
+    <ul *ngIf="access.role == 1">
+      <li>Créer un nouveau produit</li>
+      <li>Modifier un produit</li>
+      <li>Réapprovisionner un produit</li>
+      <li>Retirer un produit</li>
+    </ul>
 
-  <ul *ngIf="access?.role == 2">
-    <li>Réapprovisionner un produit</li>
-    <li>Retirer un produit</li>
-  </ul>
+    <ul *ngIf="access.role == 2">
+      <li>Réapprovisionner un produit</li>
+      <li>Retirer un produit</li>
+    </ul>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col col-12 text-center>
-        <button ion-button icon-start round (click)="goToPatchUserStock(access)"><ion-icon name="brush"></ion-icon>Modifier les droits</button>
-      </ion-col>
-    </ion-row>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button icon-start round (click)="goToPatchUserStock(access)"><ion-icon name="brush"></ion-icon>Modifier les droits</button>
+        </ion-col>
+      </ion-row>
 
-    <ion-row>
-      <ion-col col-12 text-center>
-        <button ion-button icon-start round color="danger" (click)="deleteUserStock()"><ion-icon name="trash"></ion-icon>Supprimer l'utilisateur du stock</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button icon-start round color="danger" (click)="deleteUserStock()"><ion-icon name="trash"></ion-icon>Supprimer l'utilisateur du stock</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

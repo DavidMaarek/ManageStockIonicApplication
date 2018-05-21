@@ -14,25 +14,25 @@
 
 
 <ion-content padding>
-  <form>
+  <form *ngIf="user">
     <ion-item>
       <ion-label stacked>Nom</ion-label>
-      <ion-input [(ngModel)]="patchUser.name" value="{{ user?.name }}" name="name" type="text" placeholder="Nom"></ion-input>
+      <ion-input [(ngModel)]="patchUser.name" value="{{ user.name }}" name="name" type="text" placeholder="Nom"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Prénom</ion-label>
-      <ion-input [(ngModel)]="patchUser.firstname" value="{{ user?.firstname }}" name="firstname" type="text" placeholder="Prénom"></ion-input>
+      <ion-input [(ngModel)]="patchUser.firstname" value="{{ user.firstname }}" name="firstname" type="text" placeholder="Prénom"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Email</ion-label>
-      <ion-input [(ngModel)]="patchUser.email" value="{{ user?.email }}" name="email" type="email" placeholder="Email"></ion-input>
+      <ion-input [(ngModel)]="patchUser.email" value="{{ user.email }}" name="email" type="email" placeholder="Email"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Société</ion-label>
-      <ion-input [(ngModel)]="patchUser.society" value="{{ user?.society }}" name="society" type="text" placeholder="Société"></ion-input>
+      <ion-input [(ngModel)]="patchUser.society" value="{{ user.society }}" name="society" type="text" placeholder="Société"></ion-input>
     </ion-item>
 
     <ion-grid>
@@ -42,6 +42,5 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-
   </form>
 </ion-content>

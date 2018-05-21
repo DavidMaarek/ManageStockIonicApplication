@@ -70,8 +70,8 @@ export class HistoryPage {
     }, error => {
       console.log(error);
       refresher.complete();
-      this.histories = null;
-      this.stocksName = null;
+      this.histories = 0;
+      this.stocksName = 0;
     });
   }
 

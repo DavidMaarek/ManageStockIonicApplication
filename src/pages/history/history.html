@@ -11,7 +11,7 @@
 
   <ion-toolbar>
     <ion-segment *ngIf="stocksName" [(ngModel)]="page">
-      <ion-segment-button *ngFor="let stock of stocksName" value="{{ stock.slug }}">{{ stock.name }} {{ stock.id }}</ion-segment-button>
+      <ion-segment-button *ngFor="let stock of stocksName" value="{{ stock.slug }}">{{ stock.name }}</ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
@@ -33,7 +33,7 @@
           <br>
           Par {{ history.user.firstname }} {{ history.user.name }}
           <br>
-          Le {{ history.date | date: 'dd/MM/yyyy'}}
+          Le {{ history.date | date: 'dd/MM/yyyy à HH:mm:ss'}}
         </ion-item>
         <p *ngIf="histories[stock.id].length == 0">Aucun produit de ce stock n'a été retiré ou réapprovisionné</p>
       </ion-list>
