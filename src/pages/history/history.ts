@@ -43,7 +43,7 @@ export class HistoryPage {
 
   initializeHistory(){
     let loading = this.loadingCtrl.create({
-      content: 'Chargement de l\'historique'
+      content: 'Chargement de l\'historique en cours'
     });
     loading.present();
 

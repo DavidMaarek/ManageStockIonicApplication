@@ -45,7 +45,7 @@ export class ViewProductPage {
 
   initializeProduct(){
     let loading = this.loadingCtrl.create({
-      content: 'Chargement du produit'
+      content: 'Chargement du produit en cours'
     });
     loading.present();
 

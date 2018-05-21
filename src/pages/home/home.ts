@@ -31,7 +31,7 @@ export class HomePage {
 
   initializeHome(){
     let loading = this.loadingCtrl.create({
-      content: 'Chargement de vos stocks'
+      content: 'Chargement de vos stocks en cours'
     });
     loading.present();
 

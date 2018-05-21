@@ -47,7 +47,7 @@ export class ViewStockPage {
 
   initializeViewStock(){
     let loading = this.loadingCtrl.create({
-      content: 'Chargement des informations du stock'
+      content: 'Chargement des informations du stock en cours'
     });
     loading.present();
 
