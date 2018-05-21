@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, App, IonicPage, LoadingController, NavController } from 'ionic-angular';
+import { ActionSheetController, AlertController, App, IonicPage, LoadingController, NavController } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { LoginPage } from "../login/login";
 import { ProfileProvider } from "../../providers/profile/profile";
@@ -23,8 +23,6 @@ export class ProfilePage {
 
   profil;
 
-  stockId;
-
   constructor(
     public alertCtrl: AlertController,
     public storage: Storage,
@@ -32,16 +30,58 @@ export class ProfilePage {
     public profileService: ProfileProvider,
     public loadingCtrl: LoadingController,
     public appCtrl: App,
+    public actionSheetCtrl: ActionSheetController
   ) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilPage');
     this.initializeProfil();
   }
 
-   ionViewDidEnter(){
-     this.updateProfil();
-   }
+  ionViewDidEnter() {
+    this.updateProfil();
+  }
+
+  initializeProfil() {
+    let loading = this.loadingCtrl.create({
+      content: 'Chargement de votre profil en cours'
+    });
+    loading.present();
+
+    this.profileService.getProfil().then((result) => {
+      this.profil = result;
+      loading.dismiss();
+    });
+  }
+
+  updateProfil() {
+    this.profileService.getProfil().then((result) => {
+      this.profil = result;
+    });
+  }
+
+  settingsActionSheet() {
+    let settingsActionSheet = this.actionSheetCtrl.create({
+      title: 'Profil',
+      buttons: [
+        {
+          text: 'Déconnexion',
+          role: 'destructive',
+          handler: () => {
+            this.logout();
+          }
+        },{
+          text: 'Modifier mon profil',
+          handler: () => {
+            this.goToPatchUser();
+          }
+        },{
+          text: 'Annuler',
+          role: 'cancel',
+        }
+      ]
+    });
+    settingsActionSheet.present();
+  }
 
   logout() {
     let alert = this.alertCtrl.create({
@@ -73,23 +113,7 @@ export class ProfilePage {
     })
   }
 
-  initializeProfil(){
-    let loading = this.loadingCtrl.create({
-      content: ''
-    });
-    loading.present();
 
-    this.profileService.getProfil().then((result) => {
-      this.profil = result;
-      loading.dismiss();
-    });
-  }
-
-  updateProfil(){
-    this.profileService.getProfil().then((result) => {
-      this.profil = result;
-    });
-  }
 
   goToPatchUser(){
     this.navCtrl.push(PatchUserPage, {

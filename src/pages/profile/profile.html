@@ -9,8 +9,8 @@
     <ion-title>Profil</ion-title>
 
     <ion-buttons end>
-      <button ion-button icon-only (click)="logout()">
-        <ion-icon name="log-out"></ion-icon>
+      <button ion-button icon-only (click)="settingsActionSheet()">
+        <ion-icon name="cog"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -20,11 +20,10 @@
 <ion-content padding>
   <div *ngIf="profil">
     <p>
-      Prénom : {{ profil?.user.firstname }}<br>
-      Nom : {{ profil?.user.name }}<br>
-      Email : {{ profil?.user.email }}<br>
-      Société : {{ profil?.user.society }} <br>
-      <a (click)="goToPatchUser()">Modifier mon profil</a>
+      Prénom : {{ profil.user.firstname }}<br>
+      Nom : {{ profil.user.name }}<br>
+      Email : {{ profil.user.email }}<br>
+      <span *ngIf="profil.user.society">Société : {{ profil.user.society }}</span>
     </p>
 
     <ion-grid>
@@ -37,8 +36,9 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <ion-list>
-      <button ion-item *ngFor="let stock of profil?.stocks" (click)="goToViewStock(stock.id)">
+    <p *ngIf="!profil.stocks">Vous n'avez aucun stock</p>
+    <ion-list *ngIf="profil.stocks">
+      <button ion-item *ngFor="let stock of profil.stocks" (click)="goToViewStock(stock.id)">
         {{ stock.name }}
       </button>
     </ion-list>
