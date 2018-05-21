@@ -49,7 +49,7 @@ export class RemoveHistoryPage {
       loading.dismiss();
       this.navCtrl.pop();
       let successToast = this.toastCtrl.create({
-        message: 'Produit retiré avec succes',
+        message: 'Produit retiré avec succès',
         duration: 3000,
         position: 'top'
       });

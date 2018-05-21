@@ -84,7 +84,7 @@ export class AddUserStockPage {
       loading.dismiss();
       this.navCtrl.pop();
       let successToast = this.toastCtrl.create({
-        message: 'Utilisateur ajouté avec succes',
+        message: 'Utilisateur ajouté avec succès',
         duration: 3000,
         position: 'top'
       });

@@ -46,7 +46,7 @@ export class AddHistoryPage {
       loading.dismiss();
       this.navCtrl.pop();
       let successToast = this.toastCtrl.create({
-        message: 'Produit réapprovisionné avec succes',
+        message: 'Produit réapprovisionné avec succès',
         duration: 3000,
         position: 'top'
       });

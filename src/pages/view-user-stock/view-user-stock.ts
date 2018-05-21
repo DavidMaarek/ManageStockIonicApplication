@@ -75,7 +75,7 @@ export class ViewUserStockPage {
   doDeleteUserStock() {
     this.accessService.deleteAccess(this.access.id).then((result) =>{
       let successMessage = this.toastCtrl.create({
-        message: 'Suppression effectuée avec succes',
+        message: 'Suppression effectuée avec succès',
         duration: 3000,
         position: 'top'
       });

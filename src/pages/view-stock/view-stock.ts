@@ -120,7 +120,7 @@ export class ViewStockPage {
   doDeleteStock(){
     this.stockService.deleteStock(this.stockId).then((result) =>{
       let successMessage = this.toastCtrl.create({
-        message: 'Suppression effectuée avec succes',
+        message: 'Suppression effectuée avec succès',
         duration: 3000,
         position: 'top'
       });

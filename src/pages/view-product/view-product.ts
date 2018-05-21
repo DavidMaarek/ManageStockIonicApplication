@@ -113,7 +113,7 @@ export class ViewProductPage {
   doDeleteProduct(){
     this.productService.deleteProduct(this.productId).then((result) =>{
       let successMessage = this.toastCtrl.create({
-        message: 'Suppression effectuée avec succes',
+        message: 'Suppression effectuée avec succès',
         duration: 3000,
         position: 'top'
       });

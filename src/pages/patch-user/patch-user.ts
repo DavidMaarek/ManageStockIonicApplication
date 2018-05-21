@@ -55,7 +55,7 @@ export class PatchUserPage {
       loading.dismiss();
       this.navCtrl.pop();
       let successToast = this.toastCtrl.create({
-        message: 'Modification effectuée avec succes',
+        message: 'Modification effectuée avec succès',
         duration: 3000,
         position: 'top'
       });
