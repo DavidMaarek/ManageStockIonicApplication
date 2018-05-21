@@ -1,0 +1,59 @@
+<!--
+  Generated template for the PatchProductPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Modifier le produit</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form *ngIf="patchProductData">
+    <ion-item>
+      <ion-label stacked>Nom</ion-label>
+      <ion-input [(ngModel)]="patchProductData.name" value="{{ patchProductData.name }}" name="name" type="text" placeholder="Nom"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Description</ion-label>
+      <ion-textarea [(ngModel)]="patchProductData.description" value="{{ patchProductData.description }}" name="description" type="text" placeholder="Description"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Référence</ion-label>
+      <ion-input [(ngModel)]="patchProductData.reference" value="{{ patchProductData.reference }}" name="reference" type="text" placeholder="Référence"></ion-input>
+    </ion-item>
+
+    <!--<ion-grid>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button (click)="takePicture('picture1')">
+            <span *ngIf="!product.picture1">Prendre une photo</span>
+            <span *ngIf="product.picture1">Modifier la photo</span>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button color="danger" *ngIf="product.picture1" (click)="deletePicture('picture1')">Supprimer la photo</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <img *ngIf="product.picture1" src="https://www.manage-stock.davidmaarek.fr/uploads/files/{{ product.picture1 }}" alt="">-->
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button round type="submit" [disabled]="patchProductData.name == null" (click)="doPatchProduct()">Modifier</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

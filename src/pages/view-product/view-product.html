@@ -66,13 +66,13 @@
 
       <ion-row *ngIf="stockAccesses.role == 0 || stockAccesses.role == 1">
         <ion-col col-12 text-center>
-          <button ion-button round icon-start (click)="goToRemoveHistoryPage()"><ion-icon name="brush"></ion-icon>Modifier le produit</button>
+          <button ion-button round icon-start (click)="goToPatchProductPage()"><ion-icon name="brush"></ion-icon>Modifier le produit</button>
         </ion-col>
       </ion-row>
 
       <ion-row *ngIf="stockAccesses.role == 0">
         <ion-col col-12 text-center>
-          <button ion-button round icon-start color="danger" (click)="goToRemoveHistoryPage()"><ion-icon name="trash"></ion-icon>Supprimer le produit</button>
+          <button ion-button round icon-start color="danger" (click)="goToPatchProductPage()"><ion-icon name="trash"></ion-icon>Supprimer le produit</button>
         </ion-col>
       </ion-row>
     </ion-grid>

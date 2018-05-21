@@ -36,6 +36,7 @@ import { ViewProductPage } from "../pages/view-product/view-product";
 import { AddHistoryPage } from "../pages/add-history/add-history";
 import { Camera } from "@ionic-native/camera";
 import { RemoveHistoryPage } from "../pages/remove-history/remove-history";
+import { PatchProductPage } from "../pages/patch-product/patch-product";
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { RemoveHistoryPage } from "../pages/remove-history/remove-history";
     ViewProductPage,
     AddHistoryPage,
     RemoveHistoryPage,
+    PatchProductPage,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +90,7 @@ import { RemoveHistoryPage } from "../pages/remove-history/remove-history";
     ViewProductPage,
     AddHistoryPage,
     RemoveHistoryPage,
+    PatchProductPage,
   ],
   providers: [
     StatusBar,

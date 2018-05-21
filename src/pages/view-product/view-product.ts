@@ -3,6 +3,7 @@ import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-an
 import { ProductProvider } from "../../providers/product/product";
 import { AddHistoryPage } from "../add-history/add-history";
 import { RemoveHistoryPage } from "../remove-history/remove-history";
+import { PatchProductPage } from "../patch-product/patch-product";
 
 /**
  * Generated class for the ViewProductPage page.
@@ -30,11 +31,9 @@ export class ViewProductPage {
   ) {
     this.productId = this.navParams.get('productId');
     this.stockAccesses = this.navParams.get('stockAccesses');
-    console.log(this.stockAccesses);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ViewProductPage');
     this.initializeProduct();
   }
 
@@ -72,6 +71,12 @@ export class ViewProductPage {
     this.navCtrl.push(RemoveHistoryPage, {
       productId: this.productId,
       quantity: this.product.quantity
+    });
+  }
+
+  goToPatchProductPage() {
+    this.navCtrl.push(PatchProductPage, {
+      product: this.product
     });
   }
 
