@@ -52,6 +52,7 @@ export class ViewProductPage {
     this.productService.getProduct(this.productId).then((result) => {
       this.product = result;
       this.product.history = this.product.history.reverse();
+      console.log(this.product);
       loading.dismiss();
     });
   }

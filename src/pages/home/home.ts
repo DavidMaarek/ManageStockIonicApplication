@@ -41,6 +41,7 @@ export class HomePage {
       // On duplique les stocks pour boucler dessus sur les segments afin de pouvoir raffraichir les données sans celles du stock afin qu'il ne bug pas
       this.stocksName = this.stocks;
       this.page = this.stocks[0].slug;
+      console.log(this.stocks);
       loading.dismiss();
     }, error => {
       console.log(error);
@@ -77,10 +78,6 @@ export class HomePage {
     for (let stock in this.stocks) {
       this.stocks[stock].slug = this.stocks[stock].id + this.stocks[stock].name.replace(/ /g,'');
     }
-  }
-
-  onSegmentChange() {
-    console.log('Changed');
   }
 
   goToAddProductPage() {

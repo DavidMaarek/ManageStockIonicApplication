@@ -26,7 +26,7 @@
   <div *ngIf="stocks" [ngSwitch]="page">
     <div *ngFor="let stock of stocks">
       <ion-list *ngSwitchCase="stock.slug">
-        <button *ngFor="let product of stock.products" ion-item (click)="goToViewProductPage(product.id, stock.stockAccesses[0])">
+        <button *ngFor="let product of stock.products" ion-item (click)="goToViewProductPage(product.id, stock.stockAccesses)">
           {{ product.name }}
           <br>
           <span>{{ product.quantity }}</span>
