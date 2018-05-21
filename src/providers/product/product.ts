@@ -80,7 +80,7 @@ export class ProductProvider {
     });
   }
 
-  deleteProduct(productId, data) {
+  deleteProduct(productId) {
     return this.storage.get('token').then((token) => {
       return new Promise((resolve, reject) => {
         const httpOptions = {

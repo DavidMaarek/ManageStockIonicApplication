@@ -91,7 +91,7 @@ export class ViewStockPage {
   deleteStock(){
     let alert = this.alertCtrl.create({
       title: 'Suppression du stock',
-      message: 'Voullez-vous vraiment supprimer le stock ' + this.stock.name + ' ?',
+      message: 'Voullez-vous vraiment supprimer le stock "' + this.stock.name + '" ?',
       buttons: [
         {
           text: 'Non',
