@@ -21,6 +21,7 @@ export class ViewProductPage {
 
   productId;
   product;
+  tmpStockAccesses;
   stockAccesses;
 
   constructor(
@@ -32,7 +33,16 @@ export class ViewProductPage {
     public productService: ProductProvider,
   ) {
     this.productId = this.navParams.get('productId');
-    this.stockAccesses = this.navParams.get('stockAccesses');
+    this.tmpStockAccesses = this.navParams.get('stockAccesses');
+
+    let count = 0;
+    for (let stockAccess in this.tmpStockAccesses) {
+      if (count === 0) {
+        this.stockAccesses = this.tmpStockAccesses[stockAccess];
+        count++;
+      }
+    }
+    console.log(this.stockAccesses);
   }
 
   ionViewDidLoad() {

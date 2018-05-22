@@ -39,8 +39,8 @@
     </ion-slides>
 
     <p>
-      Description : {{ product.description }} <br>
-      Référence : {{ product.reference }} <br>
+      <span *ngIf="product.description">Description : {{ product.description }}</span> <br>
+      <span *ngIf="product.reference">Référence : {{ product.reference }}</span> <br>
       Quantité : {{ product.quantity }} <br>
     </p>
 
@@ -50,7 +50,7 @@
       <ion-item *ngFor="let history of product.history">
         <ion-icon name="{{ history.type }}" item-start=""></ion-icon> <b>{{ history.quantity }}</b> par {{ history.user.firstname }} {{ history.user.name }}
         <br>
-        Le {{ history.date | date: 'dd/MM/yyyy'}}
+        Le {{ history.date | date: 'dd/MM/yyyy à HH:mm:ss'}}
       </ion-item>
     </ion-list>
 
